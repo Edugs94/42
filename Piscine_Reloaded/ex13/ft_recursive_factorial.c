@@ -6,7 +6,7 @@
 /*   By: egalindo <egalindo@student.42barcelona.    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/09/11 16:24:49 by egalindo          #+#    #+#             */
-/*   Updated: 2025/09/11 16:24:49 by egalindo         ###   ########.fr       */
+/*   Updated: 2025/09/22 16:19:52 by egalindo         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -32,5 +32,6 @@ int	main(int argc, char **argv)
 	nb = atoi(argv[1]);
 	result = ft_recursive_factorial(nb);
 	printf("%d\n", result);
+	return (0);
 }
 */
