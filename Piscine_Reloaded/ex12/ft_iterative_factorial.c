@@ -6,7 +6,7 @@
 /*   By: egalindo <egalindo@student.42barcelona.    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/09/11 13:25:32 by egalindo          #+#    #+#             */
-/*   Updated: 2025/09/11 13:25:32 by egalindo         ###   ########.fr       */
+/*   Updated: 2025/09/24 17:30:39 by egalindo         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -23,6 +23,8 @@ int	ft_iterative_factorial(int nb)
 		result = 0;
 	if (nb == 0)
 		result = 1;
+	if (nb > 12)
+		return (0);
 	while (nb > 1)
 	{
 		result = result * (nb - 1);

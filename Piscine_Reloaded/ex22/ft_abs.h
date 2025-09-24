@@ -1,34 +1,17 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   ft_print_alphabet.c                                :+:      :+:    :+:   */
+/*   ft_abs.h                                           :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: egalindo <egalindo@student.42barcelona.    +#+  +:+       +#+        */
+/*   By: egalindo <egalindo@student.42barcelon      +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2025/09/11 10:29:38 by egalindo          #+#    #+#             */
-/*   Updated: 2025/09/24 17:07:38 by egalindo         ###   ########.fr       */
+/*   Created: 2025/09/24 10:26:26 by egalindo          #+#    #+#             */
+/*   Updated: 2025/09/24 11:22:12 by egalindo         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#include <unistd.h>
+#ifndef FT_ABS_H
+# define FT_ABS_H
+# define ABS(value) ((value) < 0 ? - (value) : (value))
 
-void	ft_putchar(char c);
-
-void	ft_print_alphabet(void)
-{
-	char	c;
-
-	c = 'a';
-	while (c <= 'z')
-	{
-		ft_putchar(c);
-		c++;
-	}
-}
-/*
-int	main(void)
-{
-	ft_print_alphabet();
-	return (0);
-}
-*/
+#endif

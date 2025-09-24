@@ -6,7 +6,7 @@
 /*   By: egalindo <egalindo@student.42barcelona.    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/09/11 16:24:49 by egalindo          #+#    #+#             */
-/*   Updated: 2025/09/22 16:19:52 by egalindo         ###   ########.fr       */
+/*   Updated: 2025/09/24 17:32:23 by egalindo         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -20,6 +20,8 @@ int	ft_recursive_factorial(int nb)
 		return (0);
 	if (nb == 0 || nb == 1)
 		return (1);
+	if (nb > 12)
+		return (0);
 	return (nb * ft_recursive_factorial(nb - 1));
 }
 

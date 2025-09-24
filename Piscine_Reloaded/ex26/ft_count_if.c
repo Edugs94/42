@@ -1,39 +1,50 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   ft_putstr.c                                        :+:      :+:    :+:   */
+/*   ft_count_if.c                                      :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: egalindo <egalindo@student.42barcelon      +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2025/09/22 16:55:31 by egalindo          #+#    #+#             */
-/*   Updated: 2025/09/24 17:33:45 by egalindo         ###   ########.fr       */
+/*   Created: 2025/09/24 12:48:02 by egalindo          #+#    #+#             */
+/*   Updated: 2025/09/24 15:28:14 by egalindo         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include <stdlib.h>
 #include <unistd.h>
-
-void	ft_putchar(char c);
-
-void	ft_putstr(char *str)
+#include <stdio.h>
+#include <stddef.h>
+/*
+int	ft_strlen_even(char *str)
+{
+	return (1);
+}
+*/
+int	ft_count_if(char **tab, int (*f)(char*))
 {
 	int	i;
+	int	count;
 
+	count = 0;
 	i = 0;
-	while (str[i])
+	while (tab[i])
 	{
-		ft_putchar(str[i]);
+		if (f(tab[i]) == 1)
+		{
+			count++;
+		}
 		i++;
 	}
+	return (count);
 }
 /*
 int	main(int argc, char **argv)
 {
-	char	*str;
+	int	count;
 
-	str = argv [1];
 	(void)argc;
-	ft_putstr(str);
-	return (0);
+	count = ft_count_if(argv, &ft_strlen_even);
+	printf("%d", count);
+	return(0);
 }
 */
