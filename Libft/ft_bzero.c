@@ -6,11 +6,11 @@
 /*   By: egalindo <egalindo@student.42barcelon      +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/09/27 12:31:42 by egalindo          #+#    #+#             */
-/*   Updated: 2025/09/27 13:10:23 by egalindo         ###   ########.fr       */
+/*   Updated: 2025/09/27 17:53:43 by egalindo         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#include <libft.h>
+#include "libft.h"
 
 void	ft_bzero(void *s, size_t n)
 {

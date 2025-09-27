@@ -6,11 +6,11 @@
 /*   By: egalindo <egalindo@student.42barcelon      +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/09/27 10:33:39 by egalindo          #+#    #+#             */
-/*   Updated: 2025/09/27 10:41:01 by egalindo         ###   ########.fr       */
+/*   Updated: 2025/09/27 17:56:02 by egalindo         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#include <libft.h>
+#include "libft.h"
 
 int	isprint(int c)
 {
