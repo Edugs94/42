@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   ft_memmove.c                                       :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: egalindo <egalindo@student.42barcelon      +#+  +:+       +#+        */
+/*   By: egalindo <egalindo@student.42barcelona.    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/09/27 14:47:23 by egalindo          #+#    #+#             */
-/*   Updated: 2025/09/27 19:00:43 by egalindo         ###   ########.fr       */
+/*   Updated: 2025/09/28 17:52:54 by egalindo         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -19,7 +19,7 @@ void	*ft_memmove(void *dest, const void *src, size_t n)
 	if (src > dest)
 	{
 		i = 0;
-		while(i < n)
+		while (i < n)
 		{
 			((unsigned char *)dest)[i] = ((unsigned char *)src)[i];
 			i++;
@@ -28,7 +28,7 @@ void	*ft_memmove(void *dest, const void *src, size_t n)
 	if (src < dest)
 	{
 		i = n;
-		while(i > 0)
+		while (i > 0)
 		{
 			((unsigned char *)dest)[i - 1] = ((unsigned char *)src)[i - 1];
 			i--;
