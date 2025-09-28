@@ -14,21 +14,25 @@
 
 void	*ft_memmove(void *dest, const void *src, size_t n)
 {
-// comprobar si dest>src y asi comprobamos la direccion de memoria
-// y si empieza por delante  por detras corregirlo
-	char	*temp;
 	size_t	i;
 
-	i = 0;
-	while (i < n)
+	if (src > dest)
 	{
-		temp[i] = ((char *)src)[i];
-		i++;
+		i = 0;
+		while(i < n)
+		{
+			((unsigned char *)dest)[i] = ((unsigned char *)src)[i];
+			i++;
+		}
 	}
-	i = 0;
-	while (i < n)
+	if (src < dest)
 	{
-		((char *)dest)[i] = temp[i];
-		i++;
+		i = n;
+		while(i > 0)
+		{
+			((unsigned char *)dest)[i - 1] = ((unsigned char *)src)[i - 1];
+			i--;
+		}
 	}
+	return (dest);
 }
