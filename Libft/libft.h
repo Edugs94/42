@@ -6,7 +6,7 @@
 /*   By: egalindo <egalindo@student.42barcelona.    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/09/27 10:20:13 by egalindo          #+#    #+#             */
-/*   Updated: 2025/09/29 18:28:34 by egalindo         ###   ########.fr       */
+/*   Updated: 2025/09/29 18:46:06 by egalindo         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -30,5 +30,6 @@ int	ft_toupper(int c);
 int	ft_tolower(int c);
 char	*ft_strchr(const char *s, int c);
 char	*ft_strrchr(const char *s, int c);
+int	strncmp(const char *s1, const char *s2, size_t n);
 
 #endif
