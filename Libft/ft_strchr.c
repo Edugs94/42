@@ -6,9 +6,11 @@
 /*   By: egalindo <egalindo@student.42barcelona.    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/09/29 17:59:20 by egalindo          #+#    #+#             */
-/*   Updated: 2025/09/29 17:59:20 by egalindo         ###   ########.fr       */
+/*   Updated: 2025/09/30 16:42:22 by egalindo         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
+
+#include "libft.h"
 
 char	*ft_strchr(const char *s, int c)
 {
