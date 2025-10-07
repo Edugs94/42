@@ -1,31 +1,42 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   ft_memcmp.c                                        :+:      :+:    :+:   */
+/*   ft_strjoin.c                                       :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: egalindo <egalindo@student.42barcelon      +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2025/09/30 17:30:08 by egalindo          #+#    #+#             */
-/*   Updated: 2025/10/07 14:37:39 by egalindo         ###   ########.fr       */
+/*   Created: 2025/10/07 15:47:09 by egalindo          #+#    #+#             */
+/*   Updated: 2025/10/07 16:01:29 by egalindo         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "libft.h"
 
-int	ft_memcmp(const void *s1, const void *s2, size_t n)
+char	*ft_strjoin(char const *s1, char const *s2)
 {
-	unsigned char	*s1_ptr;
-	unsigned char	*s2_ptr;
-	size_t			i;
+	size_t	len1;
+	size_t	len2;
+	size_t	i;
+	size_t	j;
+	char	*str;
 
-	s1_ptr = (unsigned char *) s1;
-	s2_ptr = (unsigned char *) s2;
+	len1 = ft_strlen(s1);
+	len2 = ft_strlen(s2);
 	i = 0;
-	while (i < n)
+	j = 0;
+	str = (char *)malloc(len1 + len2 + 1);
+	if (str == NULL)
+		return (0);
+	while (i < len1)
 	{
-		if (s1_ptr[i] != s2_ptr[i])
-			return (s1_ptr[i] - s2_ptr[i]);
+		str[i] = s1[i];
 		i++;
 	}
-	return (0);
+	while (j < len2)
+	{
+		str[i + j] = s2[j];
+		j++;
+	}
+	str[i + j] = '\0';
+	return (str);
 }

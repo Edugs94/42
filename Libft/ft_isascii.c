@@ -6,16 +6,13 @@
 /*   By: egalindo <egalindo@student.42barcelon      +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/09/27 09:45:34 by egalindo          #+#    #+#             */
-/*   Updated: 2025/09/27 17:55:45 by egalindo         ###   ########.fr       */
+/*   Updated: 2025/10/07 10:51:10 by egalindo         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "libft.h"
 
-int	ft_isacii(int c)
+int	ft_isascii(int c)
 {
-	if (c >= 0 && c <= 127)
-		return (c);
-	else
-		return (0);
+	return (c >= 0 && c <= 127);
 }

@@ -6,7 +6,7 @@
 /*   By: egalindo <egalindo@student.42barcelon      +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/09/30 17:39:33 by egalindo          #+#    #+#             */
-/*   Updated: 2025/09/30 18:32:04 by egalindo         ###   ########.fr       */
+/*   Updated: 2025/10/07 14:49:22 by egalindo         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -21,20 +21,14 @@ char	*ft_strnstr(const char *big, const char *little, size_t len)
 	j = 0;
 	if (ft_strlen(little) == 0)
 		return ((char *)big);
-
-	while (big[i] && little[j] && i < len)
+	while (big[i] && i < len)
 	{
-		if (big[i] != little[j])
-		{
-			i++;
-		}
-		else
-			while (big[i] == little[j])
-			{
-				i++;
-				j++;
-			}
-			return ((char *)(big + (i - j)));
+		j = 0;
+		while (little[j] && big[i + j] == little[j] && i + j < len)
+			j++;
+		if (little[j] == '\0')
+			return ((char *)&big[i]);
+		i++;
 	}
 	return (0);
 }

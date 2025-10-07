@@ -6,16 +6,15 @@
 /*   By: egalindo <egalindo@student.42barcelon      +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/09/27 10:33:39 by egalindo          #+#    #+#             */
-/*   Updated: 2025/09/27 17:56:02 by egalindo         ###   ########.fr       */
+/*   Updated: 2025/10/07 10:48:52 by egalindo         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "libft.h"
 
-int	isprint(int c)
+int	ft_isprint(int c)
 {
 	if (c > 31 && c < 127)
 		return (c);
-	else
-		return (0);
+	return (0);
 }

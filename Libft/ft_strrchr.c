@@ -6,7 +6,7 @@
 /*   By: egalindo <egalindo@student.42barcelona.    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/09/29 18:21:03 by egalindo          #+#    #+#             */
-/*   Updated: 2025/09/29 18:21:03 by egalindo         ###   ########.fr       */
+/*   Updated: 2025/10/07 10:11:19 by egalindo         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -18,11 +18,11 @@ char	*ft_strrchr(const char *s, int c)
 
 	len = ft_strlen(s);
 	s = s + len;
-	if(*s == (char) c)
-			return ((char *)s);
+	if (*s == (char) c)
+		return ((char *)s);
 	while (len >= 0)
 	{
-		if(*s == (char) c)
+		if (*s == (char) c)
 			return ((char *)s);
 		s--;
 		len--;

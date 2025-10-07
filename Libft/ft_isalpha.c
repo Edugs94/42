@@ -6,7 +6,7 @@
 /*   By: egalindo <egalindo@student.42barcelon      +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/09/27 09:21:30 by egalindo          #+#    #+#             */
-/*   Updated: 2025/09/27 17:54:04 by egalindo         ###   ########.fr       */
+/*   Updated: 2025/10/07 10:50:38 by egalindo         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -16,6 +16,5 @@ int	ft_isalpha(int c)
 {
 	if ((c > 64 && c < 91) || (c > 96 && c < 123))
 		return (c);
-	else
-		return (0);
+	return (0);
 }

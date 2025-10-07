@@ -6,7 +6,7 @@
 /*   By: egalindo <egalindo@student.42barcelona.    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/09/27 14:47:23 by egalindo          #+#    #+#             */
-/*   Updated: 2025/09/28 17:52:54 by egalindo         ###   ########.fr       */
+/*   Updated: 2025/10/07 15:11:30 by egalindo         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -16,9 +16,9 @@ void	*ft_memmove(void *dest, const void *src, size_t n)
 {
 	size_t	i;
 
+	i = 0;
 	if (src > dest)
 	{
-		i = 0;
 		while (i < n)
 		{
 			((unsigned char *)dest)[i] = ((unsigned char *)src)[i];
