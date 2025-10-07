@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   ft_strtrim.c                                       :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: egalindo <egalindo@student.42barcelon      +#+  +:+       +#+        */
+/*   By: egalindo <egalindo@student.42barcelona.    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/10/07 16:06:32 by egalindo          #+#    #+#             */
-/*   Updated: 2025/10/07 18:13:11 by egalindo         ###   ########.fr       */
+/*   Updated: 2025/10/07 22:22:51 by egalindo         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -14,34 +14,25 @@
 
 char	*ft_strtrim(char const *s1, char const *set)
 {
-	size_t	i;
-	size_t	count;
-	char	*str;
+	size_t start;
+	size_t end;
+	size_t len;
+	char *str;
 
-	i = 0;
-	count = 0;
-	while (ft_strchr(set, s1[i]) != 0 && s1[i])
-	{
-		i++;
-		count++;
-	}
-	i = ft_strlen(s1) - 1;
-	while (ft_strchr(set, s1[i]) != 0 && i > 0)
-	{
-		i--;
-		count++;
-	}
-	str = (char *)malloc(count + 1);
+	if (s1 == NULL || set == NULL)
+		return (NULL);
+	start = 0;
+	while (s1[start] && ft_strchr(set, s1[start])) 
+		start++;
+	if (s1[start] == '\0')
+		return (ft_strdup(""));
+	end = ft_strlen(s1) - 1;
+	while (end > start && ft_strchr(set, s1[end])) 
+		end--;
+	len = end - start + 1;
+	str = (char *)ft_calloc(len + 1, 1);
 	if (str == NULL)
-		return (0);
-	while (ft_strchr(set, s1[i]) != 0)
-		i++;
-	while (j < count)
-	{
-		str[j] = s1[i];
-		j++;
-		i++;
-	}
-	str[j] = 0;
+		return (NULL);
+	ft_memmove(str, s1 + start, len);
 	return (str);
 }
