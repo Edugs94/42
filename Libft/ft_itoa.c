@@ -3,63 +3,55 @@
 /*                                                        :::      ::::::::   */
 /*   ft_itoa.c                                          :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: egalindo <egalindo@student.42barcelon      +#+  +:+       +#+        */
+/*   By: egalindo <egalindo@student.42barcelona.    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/10/08 12:10:31 by egalindo          #+#    #+#             */
-/*   Updated: 2025/10/08 14:57:32 by egalindo         ###   ########.fr       */
+/*   Updated: 2025/10/09 11:31:44 by egalindo         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "libft.h"
 
-int	ft_pow_10(int n)
+static int	num_len(long long n)
 {
-	int		i;
-	size_t	pow;
+	int	len;
 
-	pow = 1;
-	i = 0;
-	while (i < n)
+	len = 0;
+	if (n <= 0)
+		len++;
+	while (n != 0)
 	{
-		pow = pow * 10;
-		i++;
+		n = n / 10;
+		len++;
 	}
-	return (pow);
+	return (len);
 }
 
 char	*ft_itoa(int n)
 {
-	char	*str;
-	size_t	len;
-	size_t	i;
-	size_t	j;
-	int		nb;
+	char		*str;
+	long long	nb;
+	int			len;
 
-	len = 0;
-	i = 0;
 	nb = n;
-	if (n < 0)
-		len++;
-	while (nb != 0)
-	{
-		nb = nb / 10;
-		len++;
-	}
-	str = (char *)malloc(sizeof(char) * len + 1);
+	len = ft_numlen(nb);
+	str = (char *)malloc(sizeof(char) * (len + 1));
 	if (str == NULL)
-		return (0);
-	if (n < 0)
+		return (NULL);
+	str[len] = '\0';
+	len--;
+	if (nb == 0)
+		str[0] = '0';
+	if (nb < 0)
 	{
-		n = -n;
-		str[i] = '-';
-		i++;
+		str[0] = '-';
+		nb = -nb;
 	}
-// a partir de aqui no me sale, si hago 50832, el 0832 se me quedara colgado, es mejor hacerlo de alante a atras con recursividad??
-	while (n > 0)
+	while (nb > 0)
 	{
-		str[i] = (n / ft_pow_10(j)) + 48;
-		i++;
+		str[len] = (nb % 10) + '0';
+		nb = nb / 10;
+		len--;
 	}
-	str[i] = '\0';
 	return (str);
 }

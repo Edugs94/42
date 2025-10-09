@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   ft_split.c                                         :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: egalindo <egalindo@student.42barcelon      +#+  +:+       +#+        */
+/*   By: egalindo <egalindo@student.42barcelona.    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/10/08 07:12:55 by egalindo          #+#    #+#             */
-/*   Updated: 2025/10/08 12:08:51 by egalindo         ###   ########.fr       */
+/*   Updated: 2025/10/08 23:03:34 by egalindo         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -19,20 +19,18 @@ size_t	words_count(char const *s, char c)
 
 	i = 0;
 	count = 0;
-	if (s[0] != c && s[0] != '\0')
-	{
-		count++;
-		i++;
-	}
+	if (!s)
+		return (0);
 	while (s[i])
 	{
-		if (s[i] == c && s[i + 1] != c && s[i + 1] != '\0')
+		while (s[i] && s[i] == c)
+			i++;
+		if (s[i] && s[i] != c)
 		{
 			count++;
-			i++;
+			while (s[i] && s[i] != c)
+				i++;
 		}
-		else
-			i++;
 	}
 	return (count);
 }
@@ -52,30 +50,42 @@ size_t	word_len(char const *s, char c, size_t *index)
 	return (end - start);
 }
 
+static char	**free_matrix(char **matrix, size_t i)
+{
+	while (i > 0)
+	{
+		i--;
+		free(matrix[i]);
+	}
+	free(matrix);
+	return (NULL);
+}
+
 char	**ft_split(char const *s, char c)
 {
 	char	**matrix;
-	size_t	*index;
-	size_t	tmp;
 	size_t	i;
+	size_t	index;
+	size_t	w_count;
 	size_t	len;
 
+	if (!s)
+		return (NULL);
+	w_count = words_count(s, c);
+	matrix = (char **)malloc(sizeof(char *) * (w_count + 1));
+	if (!matrix)
+		return (NULL);
 	i = 0;
-	index = (size_t *)malloc(sizeof(size_t));
-	if (index == NULL)
-		return (0);
-	*index = 0;
-	matrix = (char **)malloc(sizeof(char *) * words_count(s, c));
-	while (i < words_count(s, c))
+	index = 0;
+	while (i < w_count)
 	{
-		tmp = *index;
-		len = word_len(s, c, index);
-		matrix[i] = (char *)malloc(sizeof(char) * len + 1);
-		if (matrix[i] == NULL)
-			return (0);
-		ft_strlcpy(matrix[i], s + tmp, len);
-		matrix[i][len] = '\0';
+		len = word_len(s, c, &index);
+		matrix[i] = (char *)malloc(sizeof(char) * (len + 1));
+		if (!matrix[i])
+			return (free_matrix(matrix, i));
+		ft_strlcpy(matrix[i], s + (index - len), len + 1);
 		i++;
 	}
+	matrix[i] = NULL;
 	return (matrix);
 }
