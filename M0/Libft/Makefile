@@ -1,14 +1,17 @@
-# Nombre del archivo final
+# --- Variables ---
+
 NAME = libft.a
 
 # Compilador y flags
 CC = cc
 CFLAGS = -Wall -Werror -Wextra
 
-# Comando para eliminar
+# Comandos
 RM = rm -f
+AR = ar rcs
 
-# Lista de archivos fuente OBLIGATORIOS
+# --- Archivos ---
+
 SRCS = ft_isalpha.c ft_isdigit.c ft_isalnum.c ft_isascii.c ft_isprint.c \
        ft_strlen.c ft_memset.c ft_bzero.c ft_memcpy.c ft_memmove.c \
        ft_strlcpy.c ft_strlcat.c ft_toupper.c ft_tolower.c ft_strchr.c \
@@ -18,53 +21,51 @@ SRCS = ft_isalpha.c ft_isdigit.c ft_isalnum.c ft_isascii.c ft_isprint.c \
        ft_strmapi.c ft_striteri.c ft_putchar_fd.c ft_putstr_fd.c \
        ft_putendl_fd.c ft_putnbr_fd.c
 
-# Lista de archivos fuente BONUS
 SRCS_BONUS = ft_lstnew_bonus.c ft_lstadd_front_bonus.c \
-			ft_lstsize_bonus.c ft_lstlast_bonus.c \
-			ft_lstadd_back_bonus.c ft_lstdelone_bonus.c \
-            ft_lstclear_bonus.c ft_lstiter_bonus.c ft_lstmap_bonus.c
+             ft_lstsize_bonus.c ft_lstlast_bonus.c \
+             ft_lstadd_back_bonus.c ft_lstdelone_bonus.c \
+             ft_lstclear_bonus.c ft_lstiter_bonus.c ft_lstmap_bonus.c
 
-# Convierte las listas de .c a .o
 OBJS = $(SRCS:.c=.o)
 OBJS_BONUS = $(SRCS_BONUS:.c=.o)
 
-# Archivos de cabecera
 HEADERS = libft.h
 
-#ifeq ($(MAKECMDGOALS),bonus)
-#OBJS += $(OBJS_BONUS)
-#endif
-# --- Reglas de Compilación ---
+# --- Reglas ---
 
-# Regla por defecto (`make`): construye la librería solo con los archivos obligatorios.
+# make solo
 all: $(NAME)
 
-# Crea la librería solo con los objetos OBLIGATORIOS.
-# TIP: Con @ escribe por pantalla y ejecuta, sin @ 
-
+# dependencias a .o
 $(NAME): $(OBJS)
-	@ar rcs $(NAME) $^
+	@$(AR) $(NAME) $^
+	@echo "Librería obligatoria creada."
 
-# REGLA BONUS: crea la librería con los objetos OBLIGATORIOS Y los BONUS.
-bonus: $(OBJS) $(OBJS_BONUS)
-	@ar rcs $(NAME) $^ 
 
-# Regla genérica para convertir .c en .o
+# La regla 'bonus' depende de que exista un archivo oculto '.bonus'.
+bonus: .bonus
+
+# Para crear el .bonus, necesita todos los archivos objeto (obligatorios y bonus).
+.bonus: $(OBJS) $(OBJS_BONUS)
+
+	@$(AR) $(NAME) $(OBJS) $(OBJS_BONUS)
+	@touch .bonus
+	@echo "Librería con bonus creada."
+
+# Regla genérica para compilar cualquier .c en un .o.
+# Se ejecutará de nuevo si el .c, el .h o el propio Makefile cambian.
 %.o: %.c $(HEADERS) Makefile
 	@$(CC) $(CFLAGS) -c $< -o $@
 
-# --- Reglas de Limpieza y Reconstrucción ---
-
+# 'make clean': Borra solo *.o
 clean:
 	@$(RM) $(OBJS) $(OBJS_BONUS)
-	@echo "🧹 Archivos objeto (.o) eliminados."
+	@echo "Archivos .o eliminados."
 
 fclean: clean
-	@$(RM) $(NAME)
-	@echo "🧹 Librería $(NAME) eliminada."
+	@$(RM) $(NAME) .bonus
+	@echo "Todo limpio."
 
 re: fclean all
 
-# --- Phony ---
-# Indica a 'make' que estas reglas no son nombres de archivos
 .PHONY: all clean fclean re bonus

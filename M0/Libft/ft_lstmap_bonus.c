@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   ft_lstmap_bonus.c                                  :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: egalindo <egalindo@student.42barcelon      +#+  +:+       +#+        */
+/*   By: egalindo <egalindo@student.42barcelona.    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/10/11 11:53:41 by egalindo          #+#    #+#             */
-/*   Updated: 2025/10/11 17:41:08 by egalindo         ###   ########.fr       */
+/*   Updated: 2025/10/11 22:14:59 by egalindo         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -18,7 +18,7 @@ t_list	*ft_lstmap(t_list *lst, void *(*f)(void *), void (*del)(void *))
 	t_list	*last_node;
 	t_list	*new_node;
 
-	if (!lst || !f || !del)
+	if (!lst || !f)
 		return (NULL);
 	new_node = ft_lstnew((*f)(lst->content));
 	if (new_node == NULL)
