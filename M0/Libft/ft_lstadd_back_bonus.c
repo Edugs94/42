@@ -6,7 +6,7 @@
 /*   By: egalindo <egalindo@student.42barcelon      +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/10/10 18:21:21 by egalindo          #+#    #+#             */
-/*   Updated: 2025/10/11 14:35:57 by egalindo         ###   ########.fr       */
+/*   Updated: 2025/10/11 15:31:09 by egalindo         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -18,8 +18,13 @@ void	ft_lstadd_back(t_list **lst, t_list *new)
 
 	if (!lst || !new)
 		return ;
+	if (!*lst)
+	{
+		*lst = new;
+		return ;
+	}
 	iter = *lst;
-	while (iter != NULL)
+	while (iter->next != NULL)
 		iter = iter->next;
-	iter = new;
+	iter->next = new;
 }

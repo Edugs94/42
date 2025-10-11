@@ -6,7 +6,7 @@
 /*   By: egalindo <egalindo@student.42barcelon      +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/10/07 08:47:31 by egalindo          #+#    #+#             */
-/*   Updated: 2025/10/10 15:39:27 by egalindo         ###   ########.fr       */
+/*   Updated: 2025/10/11 15:14:20 by egalindo         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -17,7 +17,7 @@ void	*ft_calloc(size_t nmemb, size_t size)
 	void	*ptr;
 
 	if (nmemb == 0 || size == 0)
-		return (0);
+		return (NULL);
 	if (nmemb > INT_MAX / size)
 		return (NULL);
 	ptr = (void *)malloc(nmemb * size);

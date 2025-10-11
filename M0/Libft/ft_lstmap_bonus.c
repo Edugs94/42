@@ -6,7 +6,7 @@
 /*   By: egalindo <egalindo@student.42barcelon      +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/10/11 11:53:41 by egalindo          #+#    #+#             */
-/*   Updated: 2025/10/11 14:30:25 by egalindo         ###   ########.fr       */
+/*   Updated: 2025/10/11 17:41:08 by egalindo         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -14,27 +14,29 @@
 
 t_list	*ft_lstmap(t_list *lst, void *(*f)(void *), void (*del)(void *))
 {
-	t_list	*iter;
+	t_list	*first_node;
+	t_list	*last_node;
 	t_list	*new_node;
-	t_list	*init;
-	void	*ptr;
 
-	if (!lst)
+	if (!lst || !f || !del)
 		return (NULL);
-//esta mal porque no estoy reservando espacio para el primero elemento
-	iter = lst;
+	new_node = ft_lstnew((*f)(lst->content));
+	if (new_node == NULL)
+		return (NULL);
+	first_node = new_node;
+	last_node = first_node;
 	lst = lst->next;
-	ptr = f(iter->content);
-	new_node = ft_lstnew(ptr);
-	init = new_node;
-	while (lst != NULL)
+	while (lst)
 	{
-		iter = lst;
+		new_node = ft_lstnew((*f)(lst->content));
+		if (new_node == NULL)
+		{
+			ft_lstclear(&first_node, del);
+			return (NULL);
+		}
+		last_node->next = new_node;
+		last_node = last_node->next;
 		lst = lst->next;
-		ptr = f(iter->content);
-		new_node = ft_lstnew(ptr);
-		ft_lstadd_back(*ptr, new_node);
-		ft_lstdelone(iter, del);
 	}
-	return (init);
+	return (first_node);
 }
