@@ -31,6 +31,9 @@ OBJS_BONUS = $(SRCS_BONUS:.c=.o)
 # Archivos de cabecera
 HEADERS = libft.h
 
+#ifeq ($(MAKECMDGOALS),bonus)
+#OBJS += $(OBJS_BONUS)
+#endif
 # --- Reglas de Compilación ---
 
 # Regla por defecto (`make`): construye la librería solo con los archivos obligatorios.
@@ -40,13 +43,11 @@ all: $(NAME)
 # TIP: Con @ escribe por pantalla y ejecuta, sin @ 
 
 $(NAME): $(OBJS)
-	@ar rcs $(NAME) $(OBJS)
-	@echo "✅ Librería $(NAME) creada (solo obligatorios)."
+	@ar rcs $(NAME) $^
 
 # REGLA BONUS: crea la librería con los objetos OBLIGATORIOS Y los BONUS.
 bonus: $(OBJS) $(OBJS_BONUS)
-	@ar rcs $(NAME) $(OBJS) $(OBJS_BONUS)
-	@echo "✅ Librería $(NAME) creada con bonus."
+	@ar rcs $(NAME) $^ 
 
 # Regla genérica para convertir .c en .o
 %.o: %.c $(HEADERS) Makefile
