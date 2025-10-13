@@ -1,39 +1,42 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   prueba_va.c                                        :+:      :+:    :+:   */
+/*   ft_strjoin.c                                       :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: egalindo <egalindo@student.42barcelon      +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2025/10/13 07:41:43 by egalindo          #+#    #+#             */
-/*   Updated: 2025/10/13 11:18:02 by egalindo         ###   ########.fr       */
+/*   Created: 2025/10/07 15:47:09 by egalindo          #+#    #+#             */
+/*   Updated: 2025/10/07 16:01:29 by egalindo         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#include <stdio.h>
-#include <stdarg.h>
+#include "libft.h"
 
-int	ft_sum(unsigned int count, ...)
+char	*ft_strjoin(char const *s1, char const *s2)
 {
-	int				sum;
-	int				number;
-	unsigned int	i;
+	size_t	len1;
+	size_t	len2;
+	size_t	i;
+	size_t	j;
+	char	*str;
 
-	sum = 0;
+	len1 = ft_strlen(s1);
+	len2 = ft_strlen(s2);
 	i = 0;
-	va_list	args;
-	va_start(args, count);
-	while(i < count)
+	j = 0;
+	str = (char *)malloc(len1 + len2 + 1);
+	if (str == NULL)
+		return (0);
+	while (i < len1)
 	{
-		number = va_arg(args, int);
+		str[i] = s1[i];
 		i++;
 	}
-	va_end (args);
-	return (number);
-}
-
-int main() 
-{
-    printf("La suma es: %d\n", ft_sum(4, 10, 20, 30, 5)); // Resultado: 65
-    return 0;
+	while (j < len2)
+	{
+		str[i + j] = s2[j];
+		j++;
+	}
+	str[i + j] = '\0';
+	return (str);
 }
