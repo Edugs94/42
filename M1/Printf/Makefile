@@ -1,32 +1,48 @@
-NAME = libft.a
+# --- Variables ---
+
+NAME = libftprintf.a
+
+# Compilador y flags
 CC = cc
 CFLAGS = -Wall -Werror -Wextra
 
-SRC = ft_isalpha.c ft_isdigit.c ft_isalnum.c ft_isascii.c ft_isprint.c \
-	ft_strlen.c ft_memset.c ft_bzero.c ft_memcpy.c ft_memmove.c \
-	ft_strlcpy.c ft_strlcat.c ft_toupper.c ft_tolower.c ft_strchr.c \
-	ft_strrchr.c ft_strncmp.c ft_memchr.c ft_memcmp.c \
-	ft_strnstr.c ft_atoi.c ft_calloc.c ft_strdup.c \
-	ft_substr.c ft_strjoin.c ft_strtrim.c ft_split.c ft_itoa.c \
-	ft_strmapi.c ft_striteri.c ft_putchar_fd.c ft_putstr_fd.c \
-	ft_putendl_fd.c ft_putnbr_fd.c
+# Comandos
+RM = rm -f
+AR = ar rcs
 
-OBJS = $(SRC:.c=.o)
+# --- Archivos ---
 
+SRCS = nombre_fichero.c 
+
+OBJS = $(SRCS:.c=.o)
+
+HEADERS = libftprintf.h
+
+# --- Reglas ---
+
+# make solo
 all: $(NAME)
 
+# dependencias a .o
 $(NAME): $(OBJS)
-	ar rcs $(NAME) $(OBJS)
+	@$(AR) $(NAME) $^
+	@echo "Librería obligatoria creada."
 
-%.o: %.c libft.h Makefile
-	$(CC) $(CFLAGS) -c $< -o $@
 
+# Regla genérica para compilar cualquier .c en un .o.
+# Se ejecutará de nuevo si el .c, el .h o el propio Makefile cambian.
+%.o: %.c $(HEADERS) Makefile
+	@$(CC) $(CFLAGS) -c $< -o $@
+
+# 'make clean': Borra solo *.o
 clean:
-	rm -f $(OBJS)
+	@$(RM) $(OBJS) $(OBJS_BONUS)
+	@echo "Archivos .o eliminados."
 
 fclean: clean
-	rm -f $(NAME)
+	@$(RM) $(NAME)
+	@echo "Todo limpio."
 
 re: fclean all
 
-.PHONY: all clean fclean re
+.PHONY: all clean fclean re bonus

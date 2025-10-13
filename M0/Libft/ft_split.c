@@ -6,13 +6,13 @@
 /*   By: egalindo <egalindo@student.42barcelona.    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/10/08 07:12:55 by egalindo          #+#    #+#             */
-/*   Updated: 2025/10/08 23:03:34 by egalindo         ###   ########.fr       */
+/*   Updated: 2025/10/13 12:48:59 by egalindo         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "libft.h"
 
-size_t	words_count(char const *s, char c)
+static size_t	words_count(char const *s, char c)
 {
 	size_t	i;
 	size_t	count;
@@ -35,7 +35,7 @@ size_t	words_count(char const *s, char c)
 	return (count);
 }
 
-size_t	word_len(char const *s, char c, size_t *index)
+static size_t	word_len(char const *s, char c, size_t *index)
 {
 	size_t	start;
 	size_t	end;
