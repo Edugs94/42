@@ -16,6 +16,8 @@ SRCS = ft_printf.c  utils_01.c utils_02.c
 
 OBJS = $(SRCS:.c=.o)
 
+LIBFT = libft.a
+
 HEADERS = libftprintf.h libft.h
 
 # --- Reglas ---
@@ -24,10 +26,13 @@ HEADERS = libftprintf.h libft.h
 all: $(NAME)
 
 # dependencias a .o
-$(NAME): $(OBJS)
+$(NAME): $(OBJS) $(JUAN)
 	@$(AR) $(NAME) $^
 	@echo "Librería obligatoria creada."
 
+$(LIBFT):
+	@make -C libft
+	@cp libft/libft.a 
 
 # Regla genérica para compilar cualquier .c en un .o.
 # Se ejecutará de nuevo si el .c, el .h o el propio Makefile cambian.
