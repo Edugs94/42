@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   ft_printf.c                                        :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: egalindo <egalindo@student.42barcelon      +#+  +:+       +#+        */
+/*   By: egalindo <egalindo@student.42barcelona.    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/10/13 14:17:47 by egalindo          #+#    #+#             */
-/*   Updated: 2025/10/14 17:10:14 by egalindo         ###   ########.fr       */
+/*   Updated: 2025/10/14 22:59:38 by egalindo         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -18,11 +18,11 @@ static unsigned int	ft_print_specifier(char c, unsigned long specifier)
 
 	len = 1;
 	if (c == 'c')
-		write(1, (char)&specifier, 1);
+		write(1, &specifier, 1);
 	if (c == 's')
 		len = ft_print_str((char *)specifier);
 	if (c == 'p')
-		len = ft_print_pointer((unsigned long)specifier);
+		len = ft_print_pointer((void *)specifier);
 	if (c == 'd' || c == 'i')
 		len = ft_print_number((long long)specifier);
 	if (c == 'u')
@@ -57,12 +57,40 @@ int	ft_printf(const char *format, ...)
 	i = 0;
 	len = 0;
 	va_start (args, format);
-	if (!str)
+	if (!format)
 		return (NULL);
-	while (str[i])
+	while (format[i])
 	{
-		if (str[i] == '%')
+		if (format[i] == '%')
 		{
+			if (format[i] == '%')
+			{
+				write(1, '%', 1);
+				len++;
+			}
+			i++;
+			if (format[i] == ' ')
+			{
+				write(1, ' ', 1);
+				len++;
+				while(format[i])
+					i++;
+			}
+					len = ft_print_specifier(format[i], args) + len;
+					len++;
+		}
+		else
+		{
+			write(1, &format[i], 1);
+			len++;
+		}
+		i++;
+	}
+	va_end(args);
+	return (len);
+}
+	
+
 			if (ft_isspecifier(str[i + 1]) == 2)
 			{
 				write(1, "%", 1);
@@ -81,6 +109,8 @@ int	ft_printf(const char *format, ...)
 			if (ft_isspecifier(str[i + 1]) == 1)
 			{
 				specifier = va_arg(args, unsigned long);
+				//cambiar funcion para que reciba tipo 
+				//especifico de datos
 				ft_print_specifier(str[i + 1], specifier);
 				i = i + 2;
 				len++;
