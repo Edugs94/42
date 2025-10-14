@@ -12,11 +12,11 @@ AR = ar rcs
 
 # --- Archivos ---
 
-SRCS = nombre_fichero.c 
+SRCS = ft_printf.c  utils_01.c utils_02.c
 
 OBJS = $(SRCS:.c=.o)
 
-HEADERS = libftprintf.h
+HEADERS = libftprintf.h libft.h
 
 # --- Reglas ---
 
