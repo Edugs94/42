@@ -9,6 +9,7 @@ CC = cc
 CFLAGS = -Wall -Werror -Wextra
 INCLUDES = -I. -Ilibft
 
+
 # Comandos comunes
 AR = ar rcs
 RM = rm -f
@@ -23,6 +24,8 @@ SRCS = ft_printf.c \
 
 # Genera automáticamente la lista de archivos objeto (.o) a partir de los .c
 OBJS = $(SRCS:.c=.o)
+
+HEADERS = ft_printf.h
 
 # --- Variables de la sub-librería (libft) ---
 
@@ -52,7 +55,7 @@ $(LIBFT_A):
 
 # Regla genérica para compilar cualquier archivo .c en un .o
 # $< es el primer prerrequisito (el .c) y $@ es el objetivo (el .o).
-%.o: %.c
+%.o: %.c $(HEADERS)
 	@echo "Compilando $<..."
 	@$(CC) $(CFLAGS) $(INCLUDES) -c $< -o $@
 

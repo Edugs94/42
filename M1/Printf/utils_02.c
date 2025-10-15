@@ -6,12 +6,12 @@
 /*   By: egalindo <egalindo@student.42barcelon      +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/10/13 17:38:12 by egalindo          #+#    #+#             */
-/*   Updated: 2025/10/14 17:16:50 by egalindo         ###   ########.fr       */
+/*   Updated: 2025/10/15 11:22:43 by egalindo         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#include "libftprintf.h"
-//#include "libft.h"
+#include "ft_printf.h"
+#include "libft/libft.h"
 
 static char	ft_hex_char(unsigned int nb)
 {
@@ -35,68 +35,59 @@ static char	ft_hex_char(unsigned int nb)
 	return (c);
 }
 
-char	*ft_itoa_hex(unsigned int n)
+char	*ft_itoa_hex(unsigned long n)
 {
 	char			*str;
-	int				len;
+	unsigned int	hex_len;
 	unsigned int	nb;
 
 	nb = n;
-	len = ft_hex_len(n);
-	str = (char *)malloc(sizeof(char) * len + 1);
+	hex_len = ft_hex_len(n);
+	str = (char *)malloc(sizeof(char) * hex_len + 1);
 	if (str == NULL)
 		return (NULL);
-	str[len] = '\0';
-	len--;
+	str[hex_len] = '\0';
+	hex_len--;
 	if (nb == 0)
 		str[0] = '0';
 	while (nb != 0)
 	{
-		str[len] = ft_hex_char(nb);
+		str[hex_len] = ft_hex_char(nb);
 		nb = nb / 16;
-		len--;
+		hex_len--;
 	}
 	return (str);
 }
 
-int	ft_print_pointer(unsigned int *ptr)
+unsigned int	ft_print_pointer(void *ptr)
 {
 	char	*str;
 
 	if (!ptr)
-		return (NULL);
-	str = ft_itoa_hex((unsigned int)ptr);
-	if (!str)
-		return (NULL);
-	write(1, "0x", 2);
-	ft_print_str(str);
-	return (ft_strlen(str) + 2);
+		return (write(1, "(nil)", 5));
+	str = ft_itoa_hex((unsigned long)ptr);
+	return (write(1, "0x", 2) + ft_print_str(str));
 }
 
-int	ft_print_low_hex(unsigned int n)
+unsigned int	ft_print_low_hex(unsigned long n)
 {
 	unsigned int	i;
 	char			*str;
 
 	i = 0;
 	str = ft_itoa_hex(n);
-	if (!str)
-		return (NULL);
 	while (str[i])
+	{
 		str[i] = ft_tolower(str[i]);
-	ft_print_str(str);
-	return (ft_strlen(str));
+		i++;
+	}
+	return (ft_print_str(str));
 }
 
-int	ft_print_hex(unsigned int n)
+unsigned int	ft_print_hex(unsigned long n)
 {
-	unsigned int	i;
-	char			*str;
+	char	*str;
 
-	i = 0;
 	str = ft_itoa_hex(n);
-	if (!str)
-		return (NULL);
-	ft_print_str(str);
-	return (ft_strlen(str));
+	return (ft_print_str(str));
 }

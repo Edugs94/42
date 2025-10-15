@@ -6,48 +6,50 @@
 /*   By: egalindo <egalindo@student.42barcelon      +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/10/13 17:38:12 by egalindo          #+#    #+#             */
-/*   Updated: 2025/10/14 17:13:10 by egalindo         ###   ########.fr       */
+/*   Updated: 2025/10/15 11:22:27 by egalindo         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#include "libftprintf.h"
-#include "libft.h"
+#include "ft_printf.h"
+#include "libft/libft.h"
 
-int	ft_hex_len(unsigned int n)
+unsigned int	ft_hex_len(unsigned int n)
+{
+	unsigned int	hex_len;
+
+	hex_len = 0;
+	while (n > 0)
+	{
+		n = n / 16;
+		hex_len++;
+	}
+	return (hex_len);
+}
+
+int	ft_print_char(int c)
+{
+	return (write(1, &c, 1));
+}
+
+unsigned int	ft_print_str(char *str)
 {
 	unsigned int	len;
 
 	len = 0;
-	while (n > 0)
+	if (!str)
+		return (write(1, "(null)", 6));
+	while (str[len])
 	{
-		n = n / 16;
+		write(1, &str[len], 1);
 		len++;
 	}
 	return (len);
 }
 
-int	ft_print_str(char *str)
-{
-	unsigned int	i;
-
-	i = 0;
-	if (!str)
-		return (NULL);
-	while (str[i])
-	{
-		write(1, &str[i], 1);
-		i++;
-	}
-	return (ft_strlen(str));
-}
-
-int	ft_print_number(int n)
+unsigned int	ft_print_number(long long n)
 {
 	char	*str;
 
 	str = ft_itoa(n);
-	if (str == NULL)
-		return (NULL);
-	ft_printstr(str);
-	return (ft_strlen(str));
+	return (ft_print_str(str));
 }

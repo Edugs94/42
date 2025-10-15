@@ -1,17 +1,17 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   libftprintf.h                                      :+:      :+:    :+:   */
+/*   ft_printf.h                                        :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: egalindo <egalindo@student.42barcelon      +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2025/10/10 08:56:11 by egalindo          #+#    #+#             */
-/*   Updated: 2025/10/14 17:15:33 by egalindo         ###   ########.fr       */
+/*   Created: 2025/10/15 11:24:41 by egalindo          #+#    #+#             */
+/*   Updated: 2025/10/15 11:24:49 by egalindo         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#ifndef LIBFTPRINTF_H
-# define LIBFTPRINTF_H
+#ifndef FT_PRINTF_H
+# define FT_PRINTF_H
 
 /******************************************************************************/
 /*																			  */
@@ -47,14 +47,14 @@
 /* 									FUNCTIONS                                 */
 /* 																			  */
 /******************************************************************************/
-char	*ft_itoa_hex(unsigned int n);
-int		ft_print_pointer(unsigned int *ptr);
-int		ft_print_low_hex(unsigned int n);
-int		ft_print_hex(unsigned int n);
-int		ft_hex_len(unsigned int n);
-int		ft_putnbr(int n);
-int		ft_print_str(char *str);
-int		ft_print_number(int n);
-int		ft_printf(const char *format, ...);
+unsigned int	ft_hex_len(unsigned int n);
+int				ft_print_char(int c);
+unsigned int	ft_print_str(char *str);
+unsigned int	ft_print_number(long long n);
+char			*ft_itoa_hex(unsigned long n);
+unsigned int	ft_print_pointer(void *ptr);
+unsigned int	ft_print_low_hex(unsigned long n);
+unsigned int	ft_print_hex(unsigned long n);
+int				ft_printf(const char *format, ...);
 
 #endif
