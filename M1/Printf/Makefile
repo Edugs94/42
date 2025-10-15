@@ -1,11 +1,11 @@
 NAME = libftprintf.a
 
-SRC = ft_printf.c print_functions.h hex_functions.h
+SRC = ft_printf.c print_functions.c hex_functions.c
 
 LIBFT_DIR = libft/
 LIBFT_NAME = libft.a
 
-HEADER = ft_printf.h
+HEADERS = ft_printf.h
 
 OBJS = $(SRC:.c=.o)
 
@@ -21,7 +21,7 @@ $(NAME): $(OBJS)
 	ar -rcs $(NAME)	$(OBJS)
 	make -C $(LIBFT_DIR) $(LIBFT_NAME) all
 
-%.o:%.c Makefile
+%.o:%.c $(HEADERS) Makefile
 	cc $(FLAGS) -c $< -o $@
 
 clean:
