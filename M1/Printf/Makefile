@@ -12,7 +12,7 @@ LIBFT_OBJS = ft_atoi.o ft_bzero.o ft_calloc.o ft_isalnum.o ft_isalpha.o ft_isasc
 
 DEPS = $(SRC:.c=.d)
 
-FLAGS = -Wall -Wextra -Werror -MMD
+FLAGS = -Wall -Wextra -Werror -g -MMD
 
 all: $(NAME)
 

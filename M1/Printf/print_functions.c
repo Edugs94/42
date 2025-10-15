@@ -21,11 +21,14 @@ int	ft_print_char(int c)
 unsigned int	ft_print_pointer(void *ptr)
 {
 	char	*str;
+	unsigned int	str_len;
 
 	if (!ptr)
 		return (write(1, "(nil)", 5));
 	str = ft_itoa_hex((unsigned long)ptr);
-	return (write(1, "0x", 2) + ft_print_str(str));
+	str_len = ft_print_str(str);
+	free(str);
+	return (write(1, "0x", 2) + str_len);
 }
 
 unsigned int	ft_print_str(char *str)
@@ -40,14 +43,16 @@ unsigned int	ft_print_str(char *str)
 		write(1, &str[len], 1);
 		len++;
 	}
-	free(str);
 	return (len);
 }
 
 unsigned int	ft_print_number(long long n)
 {
 	char	*str;
+	unsigned int	str_len;
 
 	str = ft_itoa(n);
-	return (ft_print_str(str));
+	str_len = ft_print_str(str);
+	free(str);
+	return (str_len);
 }

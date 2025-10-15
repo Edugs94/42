@@ -28,22 +28,10 @@ static unsigned int	ft_hex_len(unsigned int n)
 static char	ft_hex_char(unsigned int nb)
 {
 	char	c;
+	char	str[17];
 
-	c = '\0';
-	if (nb % 16 < 10)
-		c = (nb % 16) + '0';
-	if (nb % 16 == 10)
-		c = 'A';
-	if (nb % 16 == 11)
-		c = 'B';
-	if (nb % 16 == 12)
-		c = 'C';
-	if (nb % 16 == 13)
-		c = 'D';
-	if (nb % 16 == 14)
-		c = 'E';
-	if (nb % 16 == 15)
-		c = 'F';
+	ft_strlcpy(str, "0123456789ABCDEF", 17);
+	c = str[nb % 16];
 	return (c);
 }
 
@@ -75,6 +63,7 @@ unsigned int	ft_print_low_hex(unsigned long n)
 {
 	unsigned int	i;
 	char			*str;
+	unsigned int	str_len;
 
 	i = 0;
 	str = ft_itoa_hex(n);
@@ -83,13 +72,18 @@ unsigned int	ft_print_low_hex(unsigned long n)
 		str[i] = ft_tolower(str[i]);
 		i++;
 	}
-	return (ft_print_str(str));
+	str_len = ft_print_str(str);
+	free(str);
+	return (str_len);
 }
 
 unsigned int	ft_print_hex(unsigned long n)
 {
 	char	*str;
+	unsigned int	str_len;
 
 	str = ft_itoa_hex(n);
-	return (ft_print_str(str));
+	str_len = ft_print_str(str);
+	free(str);
+	return (str_len);
 }
