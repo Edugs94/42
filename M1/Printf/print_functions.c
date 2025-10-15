@@ -6,29 +6,26 @@
 /*   By: egalindo <egalindo@student.42barcelon      +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/10/13 17:38:12 by egalindo          #+#    #+#             */
-/*   Updated: 2025/10/15 11:22:27 by egalindo         ###   ########.fr       */
+/*   Updated: 2025/10/15 16:10:46 by egalindo         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "ft_printf.h"
 #include "libft/libft.h"
 
-unsigned int	ft_hex_len(unsigned int n)
-{
-	unsigned int	hex_len;
-
-	hex_len = 0;
-	while (n > 0)
-	{
-		n = n / 16;
-		hex_len++;
-	}
-	return (hex_len);
-}
-
 int	ft_print_char(int c)
 {
 	return (write(1, &c, 1));
+}
+
+unsigned int	ft_print_pointer(void *ptr)
+{
+	char	*str;
+
+	if (!ptr)
+		return (write(1, "(nil)", 5));
+	str = ft_itoa_hex((unsigned long)ptr);
+	return (write(1, "0x", 2) + ft_print_str(str));
 }
 
 unsigned int	ft_print_str(char *str)

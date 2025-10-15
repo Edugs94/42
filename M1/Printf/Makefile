@@ -1,81 +1,39 @@
-# --- Variables de configuración ---
+NAME = libftprintf.
 
-# Nombre de la librería que vamos a crear
-NAME = libftprintf.a
+SRC = ft_printf.c utils_01.h utils_02.h \
 
-# Compilador y sus flags. -I. e -Ilibft le dicen al compilador que busque
-# los archivos de cabecera (.h) en el directorio actual y en el directorio libft.
-CC = cc
-CFLAGS = -Wall -Werror -Wextra
-INCLUDES = -I. -Ilibft
+LIBFT_DIR = libft/
 
+LIBFT_NAME = libft.a
 
-# Comandos comunes
-AR = ar rcs
-RM = rm -f
-MAKE = make
+HEADER = ft_printf.h
 
-# --- Archivos del proyecto ---
+OBJS = $(SRC:.c=.o)
 
-# Lista de todos los archivos fuente (.c) de tu proyecto
-SRCS = ft_printf.c \
-       utils_01.c \
-       utils_02.c
+DEPS = $(SRC: .c=.d)
 
-# Genera automáticamente la lista de archivos objeto (.o) a partir de los .c
-OBJS = $(SRCS:.c=.o)
+FLAGS = -Wall -Wextra -Werror -MMD
 
-HEADERS = ft_printf.h
-
-# --- Variables de la sub-librería (libft) ---
-
-# Directorio donde se encuentra la librería libft
-LIBFT_DIR = libft
-# Ruta completa al archivo de la librería libft.a
-LIBFT_A = $(LIBFT_DIR)/libft.a
-
-# --- Reglas de construcción ---
-
-# Regla por defecto que se ejecuta con 'make'
 all: $(NAME)
 
-# Regla para crear la librería principal: libftprintf.a
-# Depende de nuestros archivos objeto (.o) y de que la librería libft.a ya exista.
-$(NAME): $(OBJS) $(LIBFT_A)
-	# Archivamos SÓLO los archivos objeto de este proyecto en libftprintf.a
-	@$(AR) $(NAME) $(OBJS)
-	@echo "✅ libftprintf.a creada correctamente."
+-include $(DEPS)
 
-# Regla para construir la librería libft.a.
-# Make detecta que $(NAME) depende de $(LIBFT_A), así que ejecutará
-# esta regla primero. Entra en el directorio 'libft' y ejecuta su propio make.
-$(LIBFT_A):
-	@echo "Construyendo la librería dependiente: libft..."
-	@$(MAKE) -C $(LIBFT_DIR)
+$(NAME): $(OBJS)
+	ar -rcs $(NAME) $(OBJS)
+	make -C $(LIBFT_DIR) $(LIBFT_NAME) all
 
-# Regla genérica para compilar cualquier archivo .c en un .o
-# $< es el primer prerrequisito (el .c) y $@ es el objetivo (el .o).
-%.o: %.c $(HEADERS)
-	@echo "Compilando $<..."
-	@$(CC) $(CFLAGS) $(INCLUDES) -c $< -o $@
+%.o:%.c Makefile
+	cc $(CFLAGS) -MMD -c $< -o $@
 
-# --- Reglas de limpieza ---
-
-# 'make clean': Borra solo los archivos objeto de este proyecto y de libft
 clean:
-	@$(RM) $(OBJS)
-	@$(MAKE) -C $(LIBFT_DIR) clean
-	@echo "🧹 Archivos objeto (.o) eliminados."
+	rm -rf $(OBJS)
+	rm -rf $(DEPS)
+	make -C $(LIBFT_DIR) $(LIBFT_NAME) clean
 
-# 'make fclean': Ejecuta 'clean' y además borra las librerías .a generadas
 fclean: clean
-	@$(RM) $(NAME)
-	@$(MAKE) -C $(LIBFT_DIR) fclean
-	@echo "🗑️ Todo limpio."
+	rm -rf $(NAME)
+	make -C $(LIBFT_DIR) $(LIBFT_NAME) fclean
 
-# 'make re': Reconstruye todo el proyecto desde cero
 re: fclean all
 
-# --- Reglas Phony ---
-# Declara reglas que no representan archivos para evitar conflictos.
-.PHONY: all clean fclean re
+.PHONY: clean re fclean all

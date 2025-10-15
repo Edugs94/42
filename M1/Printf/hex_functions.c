@@ -1,18 +1,30 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   utils_02.c                                         :+:      :+:    :+:   */
+/*   hex_functions.c                                    :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: egalindo <egalindo@student.42barcelon      +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/10/13 17:38:12 by egalindo          #+#    #+#             */
-/*   Updated: 2025/10/15 11:22:43 by egalindo         ###   ########.fr       */
+/*   Updated: 2025/10/15 16:11:03 by egalindo         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "ft_printf.h"
 #include "libft/libft.h"
 
+static unsigned int	ft_hex_len(unsigned int n)
+{
+	unsigned int	hex_len;
+
+	hex_len = 0;
+	while (n > 0)
+	{
+		n = n / 16;
+		hex_len++;
+	}
+	return (hex_len);
+}
 static char	ft_hex_char(unsigned int nb)
 {
 	char	c;
@@ -57,16 +69,6 @@ char	*ft_itoa_hex(unsigned long n)
 		hex_len--;
 	}
 	return (str);
-}
-
-unsigned int	ft_print_pointer(void *ptr)
-{
-	char	*str;
-
-	if (!ptr)
-		return (write(1, "(nil)", 5));
-	str = ft_itoa_hex((unsigned long)ptr);
-	return (write(1, "0x", 2) + ft_print_str(str));
 }
 
 unsigned int	ft_print_low_hex(unsigned long n)
