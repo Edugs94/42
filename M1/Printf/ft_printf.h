@@ -6,7 +6,7 @@
 /*   By: egalindo <egalindo@student.42barcelon      +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/10/15 11:24:41 by egalindo          #+#    #+#             */
-/*   Updated: 2025/10/15 11:24:49 by egalindo         ###   ########.fr       */
+/*   Updated: 2025/10/15 17:00:56 by egalindo         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -47,7 +47,6 @@
 /* 									FUNCTIONS                                 */
 /* 																			  */
 /******************************************************************************/
-unsigned int	ft_hex_len(unsigned int n);
 int				ft_print_char(int c);
 unsigned int	ft_print_str(char *str);
 unsigned int	ft_print_number(long long n);
