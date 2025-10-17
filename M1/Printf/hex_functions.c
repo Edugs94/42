@@ -13,7 +13,7 @@
 #include "ft_printf.h"
 #include "libft/libft.h"
 
-static unsigned int	ft_hex_len(unsigned int n)
+static unsigned int	ft_hex_len(unsigned long n)
 {
 	unsigned int	hex_len;
 

@@ -1,0 +1,20 @@
+For /home/edugs/francinette/tests/printf/printfTester/tests/p_test.cpp:
+25:     TEST(1, print(" %p ", -1));
+27:     TEST(3, print(" %p ", 15));
+30:     TEST(6, print(" %p %p ", LONG_MIN, LONG_MAX));
+31:     TEST(7, print(" %p %p ", INT_MIN, INT_MAX));
+32:     TEST(8, print(" %p %p ", ULONG_MAX, -ULONG_MAX));
+
+For /home/edugs/francinette/tests/printf/printfTester/tests/u_test.cpp:
+26:     TEST(2, print(" %u ", -1));
+37:     TEST(13, print(" %u ", -9));
+38:     TEST(14, print(" %u ", -10));
+39:     TEST(15, print(" %u ", -11));
+40:     TEST(16, print(" %u ", -14));
+41:     TEST(17, print(" %u ", -15));
+42:     TEST(18, print(" %u ", -16));
+43:     TEST(19, print(" %u ", -99));
+44:     TEST(20, print(" %u ", -100));
+45:     TEST(21, print(" %u ", -101));
+47:     TEST(23, print(" %u ", INT_MIN));
+48:     TEST(24, print(" %u ", LONG_MAX));

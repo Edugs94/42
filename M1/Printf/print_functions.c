@@ -26,9 +26,10 @@ unsigned int	ft_print_pointer(void *ptr)
 	if (!ptr)
 		return (write(1, "(nil)", 5));
 	str = ft_itoa_hex((unsigned long)ptr);
+	write(1, "0x", 2) ;
 	str_len = ft_print_str(str);
 	free(str);
-	return (write(1, "0x", 2) + str_len);
+	return (2 + str_len);
 }
 
 unsigned int	ft_print_str(char *str)
