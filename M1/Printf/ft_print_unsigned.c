@@ -59,5 +59,6 @@ unsigned int	ft_print_unsigned(unsigned int n)
 
 	str = ft_utoa(n);
 	str_len = ft_print_str(str);
+	free(str);
 	return (str_len);
 }

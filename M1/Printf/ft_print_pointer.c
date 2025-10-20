@@ -6,7 +6,7 @@
 /*   By: egalindo <egalindo@student.42barcelon      +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/10/20 11:45:01 by egalindo          #+#    #+#             */
-/*   Updated: 2025/10/20 14:07:40 by egalindo         ###   ########.fr       */
+/*   Updated: 2025/10/20 16:52:38 by egalindo         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -61,6 +61,7 @@ static char	*ft_itoa_hex(unsigned long n)
 	}
 	return (str);
 }
+
 unsigned int	ft_print_pointer(void *ptr)
 {
 	char			*str;
