@@ -6,7 +6,7 @@
 /*   By: egalindo <egalindo@student.42barcelona.    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/10/13 14:17:47 by egalindo          #+#    #+#             */
-/*   Updated: 2025/10/17 17:24:56 by egalindo         ###   ########.fr       */
+/*   Updated: 2025/10/20 08:19:33 by egalindo         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -61,7 +61,7 @@ int	ft_printf(const char *format, ...)
 			{
 				write(1, " ", 1);
 				len++;
-				while (format[i])
+				while (format[i] == ' ')
 					i++;
 			}
 			len = ft_print_specifier(format[i], args) + len;

@@ -18,6 +18,8 @@ static unsigned int	ft_hex_len(unsigned long n)
 	unsigned int	hex_len;
 
 	hex_len = 0;
+	if (n == 0)
+		return (1);
 	while (n > 0)
 	{
 		n = n / 16;
@@ -28,9 +30,9 @@ static unsigned int	ft_hex_len(unsigned long n)
 static char	ft_hex_char(unsigned int nb)
 {
 	char	c;
-	char	str[17];
+	char	str[16];
 
-	ft_strlcpy(str, "0123456789ABCDEF", 17);
+	ft_strlcpy(str, "0123456789ABCDEF", 16);
 	c = str[nb % 16];
 	return (c);
 }
