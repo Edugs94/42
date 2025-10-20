@@ -6,7 +6,7 @@
 /*   By: egalindo <egalindo@student.42barcelona.    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/10/13 14:17:47 by egalindo          #+#    #+#             */
-/*   Updated: 2025/10/20 08:19:33 by egalindo         ###   ########.fr       */
+/*   Updated: 2025/10/20 11:46:19 by egalindo         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -25,13 +25,13 @@ static unsigned int	ft_print_specifier(char specifier, va_list args)
 	if (specifier == 'p')
 		len = ft_print_pointer(va_arg(args, void *));
 	if (specifier == 'd' || specifier == 'i')
-		len = ft_print_number(va_arg(args, long long));
+		len = ft_print_integer(va_arg(args, int));
 	if (specifier == 'u')
-		len = ft_print_number(va_arg(args, unsigned int));
+		len = ft_print_unsigned(va_arg(args, unsigned int));
 	if (specifier == 'x')
-		len = ft_print_low_hex(va_arg(args, unsigned long));
-	if (specifier == 'X')
 		len = ft_print_hex(va_arg(args, unsigned long));
+	if (specifier == 'X')
+		len = ft_print_upper_hex(va_arg(args, unsigned long));
 	return (len);
 }
 

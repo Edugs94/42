@@ -6,7 +6,7 @@
 /*   By: egalindo <egalindo@student.42barcelon      +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/10/15 11:24:41 by egalindo          #+#    #+#             */
-/*   Updated: 2025/10/15 17:00:56 by egalindo         ###   ########.fr       */
+/*   Updated: 2025/10/20 14:06:54 by egalindo         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -47,13 +47,14 @@
 /* 									FUNCTIONS                                 */
 /* 																			  */
 /******************************************************************************/
-int				ft_print_char(int c);
-unsigned int	ft_print_str(char *str);
-unsigned int	ft_print_number(long long n);
-char			*ft_itoa_hex(unsigned long n);
-unsigned int	ft_print_pointer(void *ptr);
-unsigned int	ft_print_low_hex(unsigned long n);
-unsigned int	ft_print_hex(unsigned long n);
 int				ft_printf(const char *format, ...);
+unsigned int	ft_print_char(int c);
+unsigned int	ft_print_integer(int n);
+unsigned int	ft_print_pointer(void *ptr);
+unsigned int	ft_print_str(char *str);
+unsigned int	ft_print_integer(int n);
+unsigned int	ft_print_unsigned(unsigned int n);
+unsigned int	ft_print_upper_hex(unsigned int n);
+unsigned int	ft_print_hex(unsigned int n);
 
 #endif

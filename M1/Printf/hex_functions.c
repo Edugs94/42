@@ -6,14 +6,14 @@
 /*   By: egalindo <egalindo@student.42barcelon      +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/10/13 17:38:12 by egalindo          #+#    #+#             */
-/*   Updated: 2025/10/15 16:11:03 by egalindo         ###   ########.fr       */
+/*   Updated: 2025/10/20 16:02:00 by egalindo         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "ft_printf.h"
 #include "libft/libft.h"
 
-static unsigned int	ft_hex_len(unsigned long n)
+static unsigned int	ft_hex_len(unsigned int n)
 {
 	unsigned int	hex_len;
 
@@ -27,17 +27,18 @@ static unsigned int	ft_hex_len(unsigned long n)
 	}
 	return (hex_len);
 }
+
 static char	ft_hex_char(unsigned int nb)
 {
 	char	c;
-	char	str[16];
+	char	*str;
 
-	ft_strlcpy(str, "0123456789ABCDEF", 16);
+	str = "0123456789abcdef";
 	c = str[nb % 16];
 	return (c);
 }
 
-char	*ft_itoa_hex(unsigned long n)
+static char	*ft_itoa_hex(unsigned int n)
 {
 	char			*str;
 	unsigned int	hex_len;
@@ -61,7 +62,7 @@ char	*ft_itoa_hex(unsigned long n)
 	return (str);
 }
 
-unsigned int	ft_print_low_hex(unsigned long n)
+unsigned int	ft_print_upper_hex(unsigned int n)
 {
 	unsigned int	i;
 	char			*str;
@@ -71,7 +72,7 @@ unsigned int	ft_print_low_hex(unsigned long n)
 	str = ft_itoa_hex(n);
 	while (str[i])
 	{
-		str[i] = ft_tolower(str[i]);
+		str[i] = ft_toupper(str[i]);
 		i++;
 	}
 	str_len = ft_print_str(str);
@@ -79,9 +80,9 @@ unsigned int	ft_print_low_hex(unsigned long n)
 	return (str_len);
 }
 
-unsigned int	ft_print_hex(unsigned long n)
+unsigned int	ft_print_hex(unsigned int n)
 {
-	char	*str;
+	char			*str;
 	unsigned int	str_len;
 
 	str = ft_itoa_hex(n);
