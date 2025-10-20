@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   ft_printf.h                                        :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: egalindo <egalindo@student.42barcelon      +#+  +:+       +#+        */
+/*   By: egalindo <egalindo@student.42barcelona.    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/10/15 11:24:41 by egalindo          #+#    #+#             */
-/*   Updated: 2025/10/20 14:06:54 by egalindo         ###   ########.fr       */
+/*   Updated: 2025/10/20 20:24:37 by egalindo         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -47,14 +47,14 @@
 /* 									FUNCTIONS                                 */
 /* 																			  */
 /******************************************************************************/
-int				ft_printf(const char *format, ...);
-unsigned int	ft_print_char(int c);
-unsigned int	ft_print_integer(int n);
-unsigned int	ft_print_pointer(void *ptr);
-unsigned int	ft_print_str(char *str);
-unsigned int	ft_print_integer(int n);
-unsigned int	ft_print_unsigned(unsigned int n);
-unsigned int	ft_print_upper_hex(unsigned int n);
-unsigned int	ft_print_hex(unsigned int n);
+int	ft_printf(const char *format, ...);
+int	ft_print_char(int c);
+int	ft_print_integer(int n);
+int	ft_print_pointer(void *ptr);
+int	ft_print_str(char *str);
+int	ft_print_integer(int n);
+int	ft_print_unsigned(unsigned int n);
+int	ft_print_upper_hex(unsigned int n);
+int	ft_print_hex(unsigned int n);
 
 #endif

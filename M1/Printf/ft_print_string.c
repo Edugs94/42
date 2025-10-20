@@ -3,19 +3,19 @@
 /*                                                        :::      ::::::::   */
 /*   ft_print_string.c                                  :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: egalindo <egalindo@student.42barcelon      +#+  +:+       +#+        */
+/*   By: egalindo <egalindo@student.42barcelona.    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/10/20 11:45:13 by egalindo          #+#    #+#             */
-/*   Updated: 2025/10/20 14:08:38 by egalindo         ###   ########.fr       */
+/*   Updated: 2025/10/20 20:24:03 by egalindo         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "ft_printf.h"
 #include "libft/libft.h"
 
-unsigned int	ft_print_str(char *str)
+int	ft_print_str(char *str)
 {
-	unsigned int	len;
+	int	len;
 
 	len = 0;
 	if (!str)

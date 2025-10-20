@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   ft_print_pointer.c                                 :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: egalindo <egalindo@student.42barcelon      +#+  +:+       +#+        */
+/*   By: egalindo <egalindo@student.42barcelona.    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/10/20 11:45:01 by egalindo          #+#    #+#             */
-/*   Updated: 2025/10/20 16:52:38 by egalindo         ###   ########.fr       */
+/*   Updated: 2025/10/20 20:23:41 by egalindo         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -62,10 +62,10 @@ static char	*ft_itoa_hex(unsigned long n)
 	return (str);
 }
 
-unsigned int	ft_print_pointer(void *ptr)
+int	ft_print_pointer(void *ptr)
 {
 	char			*str;
-	unsigned int	str_len;
+	int				str_len;
 	unsigned long	adress;
 
 	if (ptr == NULL)

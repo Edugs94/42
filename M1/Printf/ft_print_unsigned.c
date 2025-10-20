@@ -52,10 +52,10 @@ static char	*ft_utoa(unsigned int n)
 	return (str);
 }
 
-unsigned int	ft_print_unsigned(unsigned int n)
+int	ft_print_unsigned(unsigned int n)
 {
-	char			*str;
-	unsigned int	str_len;
+	char	*str;
+	int		str_len;
 
 	str = ft_utoa(n);
 	str_len = ft_print_str(str);

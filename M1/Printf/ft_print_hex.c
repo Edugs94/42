@@ -13,7 +13,7 @@
 #include "ft_printf.h"
 #include "libft/libft.h"
 
-static unsigned int	ft_hex_len(unsigned int n)
+static int	ft_hex_len(unsigned int n)
 {
 	unsigned int	hex_len;
 
@@ -62,7 +62,7 @@ static char	*ft_itoa_hex(unsigned int n)
 	return (str);
 }
 
-unsigned int	ft_print_upper_hex(unsigned int n)
+int	ft_print_upper_hex(unsigned int n)
 {
 	unsigned int	i;
 	char			*str;
@@ -80,7 +80,7 @@ unsigned int	ft_print_upper_hex(unsigned int n)
 	return (str_len);
 }
 
-unsigned int	ft_print_hex(unsigned int n)
+int	ft_print_hex(unsigned int n)
 {
 	char			*str;
 	unsigned int	str_len;
