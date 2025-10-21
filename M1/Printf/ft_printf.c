@@ -6,7 +6,7 @@
 /*   By: egalindo <egalindo@student.42barcelona.    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/10/13 14:17:47 by egalindo          #+#    #+#             */
-/*   Updated: 2025/10/21 17:21:06 by egalindo         ###   ########.fr       */
+/*   Updated: 2025/10/21 21:27:38 by egalindo         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -39,7 +39,7 @@ static int	ft_isformat(char c)
 {
 	if (c == 'c' || c == 's' || c == 'p' || c == 'd')
 		return (1);
-	else if (c == 'i' || c == 'u'|| c == 'x' || c == 'X')
+	else if (c == 'i' || c == 'u' || c == 'x' || c == 'X')
 		return (1);
 	else if (c == '%')
 		return (2);
@@ -72,7 +72,7 @@ int	ft_printf(const char *format, ...)
 		return (-1);
 	while (format[i])
 	{
-		if (format[i] == '%' && (!format[i + 1] || format[i + 1] == ' '))
+		if (format[i] == '%' && !format[i + 1])
 			return (-1);
 		else if (format[i] == '%' && ft_isformat(format[i + 1]) == 1)
 		{
@@ -82,23 +82,15 @@ int	ft_printf(const char *format, ...)
 				return (-1);
 			len += check;
 		}
-		else if(format[i] == '%' && ft_isformat(format[i + 1]) == 2)
+		else if (format[i] == '%' && ft_isformat(format[i + 1]) == 2)
 		{
 			len += write(1, "%", 1);
 			i++;
 		}
-		else if(format[i] == '%' && ft_isformat(format[i + 1]) == 0)
+		else if (format[i] == '%' && ft_isformat(format[i + 1]) == 0)
 		{
-			if (ft_isalpha(format[i + 1])> 0)
-			{
-				len += write(1, &format[i++], 1);
-				len += write(1, &format[i], 1);
-			}
-			else
-			{
-				write(1, &format[i++], 1);
-				write(1, &format[i], 1);
-			}
+			len += write(1, &format[i++], 1);
+			len += write(1, &format[i], 1);
 		}
 		else
 			len += write(1, &format[i], 1);
