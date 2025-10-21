@@ -70,6 +70,8 @@ int	ft_print_upper_hex(unsigned int n)
 
 	i = 0;
 	str = ft_itoa_hex(n);
+	if (!str)
+		return (-1);
 	while (str[i])
 	{
 		str[i] = ft_toupper(str[i]);
@@ -86,6 +88,8 @@ int	ft_print_hex(unsigned int n)
 	unsigned int	str_len;
 
 	str = ft_itoa_hex(n);
+	if (!str)
+		return (-1);
 	str_len = ft_print_str(str);
 	free(str);
 	return (str_len);

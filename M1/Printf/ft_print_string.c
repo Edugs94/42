@@ -15,15 +15,7 @@
 
 int	ft_print_str(char *str)
 {
-	int	len;
-
-	len = 0;
 	if (!str)
 		return (write(1, "(null)", 6));
-	while (str[len])
-	{
-		write(1, &str[len], 1);
-		len++;
-	}
-	return (len);
+	return (write(1, str, ft_strlen(str)));
 }

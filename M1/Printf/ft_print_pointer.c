@@ -72,6 +72,8 @@ int	ft_print_pointer(void *ptr)
 		return (write(1, "(nil)", 5));
 	adress = (unsigned long)ptr;
 	str = ft_itoa_hex(adress);
+	if (!str)
+		return (-1);
 	write(1, "0x", 2);
 	str_len = ft_print_str(str);
 	free(str);

@@ -19,6 +19,8 @@ int	ft_print_integer(int n)
 	int		str_len;
 
 	str = ft_itoa(n);
+	if (!str)
+		return (-1);
 	str_len = ft_print_str(str);
 	free(str);
 	return (str_len);

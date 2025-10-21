@@ -32,6 +32,8 @@ static int	ft_print_specifier(char specifier, va_list args)
 		len = ft_print_hex(va_arg(args, unsigned int));
 	else if (specifier == 'X')
 		len = ft_print_upper_hex(va_arg(args, unsigned int));
+	else
+		return (write(1, "%", 1) + write(1, &specifier, 1));
 	return (len);
 }
 
@@ -55,6 +57,7 @@ int	ft_printf(const char *format, ...)
 	va_list			args;
 	unsigned int	i;
 	int				len;
+	int				check;
 
 	i = 0;
 	len = 0;
@@ -63,8 +66,13 @@ int	ft_printf(const char *format, ...)
 		return (-1);
 	while (format[i])
 	{
-		if (format[i] == '%')
-			len += ft_check_next(format, &i, args);
+		if (format[i] == '%' && format[i + 1])
+		{
+			check = ft_check_next(format, &i, args);
+			if (check < 0)
+				return (-2);
+			len += check;
+		}
 		else
 			len += write(1, &format[i], 1);
 		i++;
