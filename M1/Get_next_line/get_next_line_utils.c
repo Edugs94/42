@@ -6,7 +6,7 @@
 /*   By: egalindo <egalindo@student.42barcelona.    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/10/23 11:20:20 by egalindo          #+#    #+#             */
-/*   Updated: 2025/10/23 11:20:20 by egalindo         ###   ########.fr       */
+/*   Updated: 2025/10/24 17:15:33 by egalindo         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -20,6 +20,19 @@ size_t	ft_strlen(const char *s)
 	while (s[len])
 		len++;
 	return (len);
+}
+
+char	*ft_strchr(const char *s, int c)
+{
+	while (*s)
+	{
+		if (*s == (char) c)
+			return ((char *)s);
+		s++;
+	}
+	if (*s == (char) c)
+		return ((char *)s);
+	return (0);
 }
 
 void	*ft_memset(void *s, int c, size_t n)
@@ -37,29 +50,33 @@ void	*ft_memset(void *s, int c, size_t n)
 	return (s);
 }
 
-char	*ft_strjoin(char *dst, const char *src)
+char	*ft_strjoin(char *s1, const char *s2)
 {
 	char	*joined;
 	size_t	i;
 	size_t	j;
 	size_t	len;
-	
+
 	i = 0;
 	j = 0;
-	len = ft_strlen(dst) + ft_strlen(src);
+	len = ft_strlen(s1) + ft_strlen(s2);
 	joined = malloc(len * sizeof(char) + 1);
 	if (!joined)
-		return (NULL);
-	while (dst[i])
 	{
-		joined[i] = dst[i];
+		free(s1);
+		return (NULL);
+	}
+	while (s1[i])
+	{
+		joined[i] = s1[i];
 		i++;
 	}
-	while (src[j])
+	while (s2[j])
 	{
-		joined[i + j] = src[j];
+		joined[i + j] = s2[j];
 		j++;
 	}
 	joined[i + j] = '\0';
+	free(s1);
 	return (joined);
 }

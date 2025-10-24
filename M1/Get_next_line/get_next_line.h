@@ -6,7 +6,7 @@
 /*   By: egalindo <egalindo@student.42barcelona.    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/10/23 11:18:17 by egalindo          #+#    #+#             */
-/*   Updated: 2025/10/23 11:18:17 by egalindo         ###   ########.fr       */
+/*   Updated: 2025/10/24 17:17:36 by egalindo         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -19,15 +19,17 @@
 /*  																		  */
 /******************************************************************************/
 
-#include <stdlib.h>
-#include <unistd.h>
+# include <stdlib.h>
+# include <unistd.h>
 
 /******************************************************************************/
 /* 																			  */
 /* 									 MACROS                                   */
 /* 																		 	  */
 /******************************************************************************/
-
+# ifndef BUFFER_SIZE
+#  define BUFFER_SIZE 42
+# endif
 /******************************************************************************/
 /* 																			  */
 /* 									VARIABLES                                 */
@@ -49,5 +51,6 @@ char	*get_next_line(int fd);
 size_t	ft_strlen(const char *s);
 void	*ft_memset(void *s, int c, size_t n);
 char	*ft_strjoin(char *dst, const char *src);
+char	*ft_strchr(const char *s, int c);
 
 #endif
