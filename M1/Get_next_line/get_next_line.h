@@ -21,7 +21,8 @@
 
 # include <stdlib.h>
 # include <unistd.h>
-
+# include <limits.h>
+# include <string.h>
 /******************************************************************************/
 /* 																			  */
 /* 									 MACROS                                   */
@@ -52,5 +53,6 @@ size_t	ft_strlen(const char *s);
 void	*ft_memset(void *s, int c, size_t n);
 char	*ft_strjoin(char *dst, const char *src);
 char	*ft_strchr(const char *s, int c);
+void	*ft_calloc(size_t nmemb, size_t size);
 
 #endif
