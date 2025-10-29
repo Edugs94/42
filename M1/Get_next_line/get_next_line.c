@@ -12,6 +12,10 @@
 
 #include "get_next_line.h"
 
+//primero debemos revisar si second_half existe
+//	si no existe, lo obviamos
+//	si existe, debemos comprobar si tiene dentro \n, y si tiene hacer del mismo
+
 static char	*read_and_build(char *first_half, char *second_half, char *buffer, int fd)
 {
 	ssize_t		bytes;
@@ -66,6 +70,16 @@ char	*get_next_line(int fd)
 	static char	*second_half;
 	char		buffer[BUFFER_SIZE + 1];
 
+	if (second_half && ft_strchr(second_half, '\n'))
+	{
+		first_half = ft_substr(second_half, 0, ft_strchr(second_half, '\n') - second_half + 1);
+		second_half = ft_strdup(ft_strchr(second_half, '\n') + 1);
+	}
+	/*else
+	{
+		first_half = ft_strdup(second_half);
+		second_half[0] = '\0';
+	}*/
 	if (!second_half)
 	{
 		second_half = ft_calloc(1, BUFFER_SIZE * sizeof(char)+ 1);
