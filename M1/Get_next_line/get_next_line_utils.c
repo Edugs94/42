@@ -17,7 +17,7 @@ size_t	ft_strlen(const char *s)
 	size_t	len;
 
 	len = 0;
-	if(!s)
+	if (!s)
 		return (0);
 	while (s[len])
 		len++;
@@ -26,7 +26,7 @@ size_t	ft_strlen(const char *s)
 
 char	*ft_strchr(const char *s, int c)
 {
-	if(!s)
+	if (!s)
 		return (NULL);
 	while (*s)
 	{
@@ -93,7 +93,7 @@ char	*ft_strjoin(char *s1, const char *s2)
 	i = 0;
 	j = 0;
 	len = ft_strlen(s1) + ft_strlen(s2);
-	joined = ft_calloc( 1, len + 1);
+	joined = ft_calloc(1, len + 1);
 	if (!joined)
 		return (NULL);
 	while (s1[i])

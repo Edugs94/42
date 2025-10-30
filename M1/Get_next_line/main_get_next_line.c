@@ -33,7 +33,7 @@ static int	ft_check_args(int argc)
 
 int	main(int argc, char **argv)
 {
-	char			*str;
+	char		*str;
 	int			fd;
 
 	if (ft_check_args(argc) < 0)
