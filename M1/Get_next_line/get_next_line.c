@@ -1,35 +1,44 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   get_second_half.c                                    :+:      :+:    :+:   */
+/*   get_next_line.c                                    :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: egalindo <egalindo@student.42barcelona.    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/10/23 11:14:12 by egalindo          #+#    #+#             */
-/*   Updated: 2025/10/25 17:35:05 by egalindo         ###   ########.fr       */
+/*   Updated: 2025/10/30 08:55:55 by egalindo         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "get_next_line.h"
 
-//primero debemos revisar si second_half existe
-//	si no existe, lo obviamos
-//	si existe, debemos comprobar si tiene dentro \n, y si tiene hacer del mismo
+void	*ft_memset(void *s, int c, size_t n)
+{
+	unsigned char	*str;
+	size_t			i;
 
-static char	*read_and_build(char *first_half, char *second_half, char *buffer, int fd)
+	str = (unsigned char *) s;
+	i = 0;
+	while (i < n)
+	{
+		str[i] = c;
+		i++;
+	}
+	return (s);
+}
+
+static char	*read_and_build(char *first_half, char *buffer, int fd)
 {
 	ssize_t		bytes;
 	char		*tmp_cpy;
 
+	ft_memset(buffer, 0, BUFFER_SIZE + 1);
 	bytes = read(fd, buffer, BUFFER_SIZE);
 	if (bytes <= 0)
 		return (NULL);
 	else
-	{//replantear todo esto, 
-		tmp_cpy = ft_calloc( 1, BUFFER_SIZE + 1);
-		if (!first_half && (ft_strchr(second_half,'\n') != NULL) )
-			first_half = ft_strjoin(second_half, buffer);
-		strcpy (tmp_cpy, second_half);
+	{
+		tmp_cpy = strdup (first_half);
 		first_half = ft_strjoin(tmp_cpy, buffer);
 		free(tmp_cpy);
 		if (!first_half)
@@ -37,30 +46,32 @@ static char	*read_and_build(char *first_half, char *second_half, char *buffer, i
 		if (ft_strchr(first_half,'\n') != NULL)
 			return (first_half);
 		else
-			first_half = read_and_build(first_half, second_half, buffer, fd);
-			//revisar esto, tengo que construir la linea completa si el buffer no abarca sufficiente
+			first_half = read_and_build(first_half, buffer, fd);
 	}
 	return (first_half);
 }
 
-char	*ft_trim(char *first_half, char *second_half)
+static char	*ft_trim(char *first_half, char *second_half)
 {
 	size_t	i;
 	size_t	j;
 
 	i = 0;
 	j = 0;
-	while (first_half[i] != '\n')
+
+	while (first_half[i] && first_half[i] != '\n')
 			i++;
-	first_half[i] = '\0';
-	i++;
+	j = i;
+	if (first_half[i])
+		i++;
 	while (first_half[i] == '\n')
 		i++;
-	while (first_half[i + j] != '\0')
-	{
-		second_half[j] = first_half[i + j];
-		j++;
-	}
+	if (!first_half[i])
+		return (NULL);
+	second_half = ft_substr(first_half, i, (ft_strlen(first_half) - i) + 1);
+	if(!second_half)
+		return (NULL);
+	first_half[j] = '\0';
 	return (second_half);
 }
 
@@ -70,33 +81,29 @@ char	*get_next_line(int fd)
 	static char	*second_half;
 	char		buffer[BUFFER_SIZE + 1];
 
-	if (second_half && ft_strchr(second_half, '\n'))
-	{
-		first_half = ft_substr(second_half, 0, ft_strchr(second_half, '\n') - second_half + 1);
-		second_half = ft_strdup(ft_strchr(second_half, '\n') + 1);
-	}
-	/*else
-	{
-		first_half = ft_strdup(second_half);
-		second_half[0] = '\0';
-	}*/
-	if (!second_half)
-	{
-		second_half = ft_calloc(1, BUFFER_SIZE * sizeof(char)+ 1);
-		if (!second_half)
-			return (NULL);
-	}
-	ft_memset(buffer, '\0', BUFFER_SIZE + 1);
-	first_half = ft_calloc(1, BUFFER_SIZE * sizeof(char) + 1);
+	first_half = ft_calloc(1, BUFFER_SIZE * sizeof(char) + 1);//deberiamos quitarlo de aqui y que se genere cuando sea necesario
 	if (!first_half)
 		return (NULL);
-	first_half = read_and_build(first_half, second_half, buffer, fd);
+	if (second_half)
+	{
+		free(first_half);
+		first_half = strdup (second_half);
+		if (!first_half)
+			return (NULL);
+		if (ft_strchr(first_half,'\n') != NULL)
+		{
+			second_half = ft_trim(first_half, second_half);
+			return (first_half);
+		}
+	}
+	first_half = read_and_build(first_half, buffer, fd);
+	if(!first_half)
+		return (NULL);
 	if (ft_strchr(first_half,'\n') != NULL)
 	{
-		second_half = ft_calloc(1, BUFFER_SIZE + 1);
-		if(second_half == NULL)
-			return (NULL);
 		second_half = ft_trim(first_half, second_half);
+		//if(!second_half)
+		//	return (NULL);
 	}
 	return (first_half);
 }

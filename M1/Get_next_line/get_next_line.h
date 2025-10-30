@@ -54,5 +54,6 @@ void	*ft_memset(void *s, int c, size_t n);
 char	*ft_strjoin(char *dst, const char *src);
 char	*ft_strchr(const char *s, int c);
 void	*ft_calloc(size_t nmemb, size_t size);
+char	*ft_substr(char const *s, unsigned int start, size_t len);
 
 #endif

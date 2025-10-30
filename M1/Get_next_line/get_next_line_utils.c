@@ -6,7 +6,7 @@
 /*   By: egalindo <egalindo@student.42barcelona.    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/10/23 11:20:20 by egalindo          #+#    #+#             */
-/*   Updated: 2025/10/25 17:34:27 by egalindo         ###   ########.fr       */
+/*   Updated: 2025/10/30 08:55:58 by egalindo         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -39,25 +39,12 @@ char	*ft_strchr(const char *s, int c)
 	return (0);
 }
 
-void	*ft_memset(void *s, int c, size_t n)
-{
-	unsigned char	*str;
-	size_t			i;
-
-	str = (unsigned char *) s;
-	i = 0;
-	while (i < n)
-	{
-		str[i] = c;
-		i++;
-	}
-	return (s);
-}
-
 void	*ft_calloc(size_t nmemb, size_t size)
 {
 	void	*ptr;
+	size_t	i;
 
+	i = 0;
 	if (nmemb == 0 || size == 0)
 		return (malloc(0));
 	if (nmemb > INT_MAX / size)
@@ -66,6 +53,33 @@ void	*ft_calloc(size_t nmemb, size_t size)
 	if (ptr == NULL)
 		return (NULL);
 	ft_memset(ptr, 0, nmemb * size);
+	return (ptr);
+}
+
+char	*ft_substr(char const *s, unsigned int start, size_t len)
+{
+	char	*ptr;
+	size_t	i;
+	size_t	s_len;
+
+	i = 0;
+	if (!s)
+		return (NULL);
+	s_len = ft_strlen(s);
+	if (start >= s_len)
+		len = 0;
+	if (len > s_len - start)
+		len = s_len - start;
+	ptr = (char *)malloc(len * sizeof(char) + 1);
+	if (ptr == NULL)
+		return (0);
+	i = 0;
+	while (i < len)
+	{
+		ptr[i] = s[start + i];
+		i++;
+	}
+	ptr[i] = '\0';
 	return (ptr);
 }
 
