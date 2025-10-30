@@ -42,9 +42,7 @@ char	*ft_strchr(const char *s, int c)
 void	*ft_calloc(size_t nmemb, size_t size)
 {
 	void	*ptr;
-	size_t	i;
 
-	i = 0;
 	if (nmemb == 0 || size == 0)
 		return (malloc(0));
 	if (nmemb > INT_MAX / size)
