@@ -115,6 +115,6 @@ char	*get_next_line(int fd)
 	if (ft_strchr(first_half, '\n') != NULL)
 		second_half = ft_trim(first_half, second_half);
 	if (!second_half || !*second_half)
-		free(second_half);
+		free(second_half); //falta return null por si falla la reserva de memoria
 	return (first_half);
 }
