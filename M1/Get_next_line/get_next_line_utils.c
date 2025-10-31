@@ -39,20 +39,31 @@ char	*ft_strchr(const char *s, int c)
 	return (0);
 }
 
-void	ft_bzero(void *s, size_t n)
+char	*ft_substr(char const *s, unsigned int start, size_t len)
 {
-	char			c;
-	unsigned char	*str;
-	size_t			i;
+	char	*ptr;
+	size_t	i;
+	size_t	s_len;
 
-	c = '\0';
 	i = 0;
-	str = (unsigned char *)s;
-	while (i < n)
+	if (!s)
+		return (NULL);
+	s_len = ft_strlen(s);
+	if (start >= s_len)
+		len = 0;
+	if (len > s_len - start)
+		len = s_len - start;
+	ptr = (char *)malloc(len * sizeof(char) + 1);
+	if (ptr == NULL)
+		return (0);
+	i = 0;
+	while (i < len)
 	{
-		str[i] = c;
+		ptr[i] = s[start + i];
 		i++;
 	}
+	ptr[i] = '\0';
+	return (ptr);
 }
 
 void	*ft_calloc(size_t nmemb, size_t size)
