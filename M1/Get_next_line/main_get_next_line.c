@@ -49,7 +49,7 @@ int	main(int argc, char **argv)
 		return (-1);
 	while (str)
 	{
-		printf("%s\n", str);
+		//printf("%s\n", str);
 		free(str);
 		str = get_next_line(fd);
 	}

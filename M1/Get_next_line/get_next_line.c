@@ -11,39 +11,9 @@
 /* ************************************************************************** */
 
 #include "get_next_line.h"
+#include <stdio.h>
 
-void	*ft_memset(void *s, int c, size_t n)
-{
-	unsigned char	*str;
-	size_t			i;
-
-	str = (unsigned char *) s;
-	i = 0;
-	while (i < n)
-	{
-		str[i] = c;
-		i++;
-	}
-	return (s);
-}
-
-void	ft_bzero(void *s, size_t n)
-{
-	char			c;
-	unsigned char	*str;
-	size_t			i;
-
-	c = '\0';
-	i = 0;
-	str = (unsigned char *)s;
-	while (i < n)
-	{
-		str[i] = c;
-		i++;
-	}
-}
-
-char	*ft_strdup(const char *s)
+char	*ft_strdup(const char *s) // cambiar a strndup ??
 {
 	char	*ptr;
 	size_t	i;
@@ -61,91 +31,67 @@ char	*ft_strdup(const char *s)
 	return (ptr);
 }
 
-static char	*read_and_build(char *first_half, char *buffer, int fd)
-{
-	ssize_t		bytes;
-	char		*tmp_cpy;
-
-	ft_memset(buffer, 0, BUFFER_SIZE + 1);
-	bytes = read(fd, buffer, BUFFER_SIZE);
-	if (bytes <= 0)
-		return (NULL);
-	else
-	{
-		tmp_cpy = ft_strdup (first_half);
-		first_half = ft_strjoin(tmp_cpy, buffer);
-		free(tmp_cpy);
-		if (!first_half)
-			return (NULL);
-		if (ft_strchr(first_half, '\n') != NULL)
-			return (first_half);
-		else
-			first_half = read_and_build(first_half, buffer, fd);
-	}
-	return (first_half);
-}
-
-static char	*ft_trim(char *first_half)
+char	*ft_trim (char **buffer)
 {
 	size_t	i;
 	size_t	j;
+	size_t	k;
+	char	*first_half;
 	char	*second_half;
+	char	*tmp_buf;
 
 	i = 0;
 	j = 0;
-	while (first_half[i] && first_half[i] != '\n')
+	while (*buffer[i] && *buffer[i] != '\n')
 		i++;
-	j = i;
-	while (first_half[i] == '\n')
-		i++;
-	second_half = ft_substr(first_half, i, (ft_strlen(first_half) - i) + 1);
-	if (!second_half)
+	first_half = malloc (i + 1);
+	if (!first_half)
 		return (NULL);
-	first_half[j] = '\0';
-	return (second_half);
+	second_half = malloc (ft_strlen(*buffer) - i + 1);
+	if (!second_half)
+		return (NULL)
+	k = i;
+	while (*buffer[i] && *buffer[i] == '\n')
+		i++;
+	return(first_half);
+}
+
+char	*ft_read_and_fill(int fd)
+{
+	ssize_t		bytes;
+	char		*buffer;
+	char		*tmp_cpy;
+
+	buffer = malloc(BUFFER_SIZE * sizeof(char) + 1);
+	if (!buffer)
+		return (NULL);
+	ft_bzero(buffer, BUFFER_SIZE + 1);
+	bytes = read(fd, buffer, BUFFER_SIZE);
+	if (bytes <= 0)
+		return (NULL);
+	return (buffer);
+}
+
+char	*build_line(char *buffer, int fd)
+{
+	if (ft_strchr(buffer, '\n') != NULL)
+		return (ft_trim(&buffer)); //in progress
+	if (ft_strchr(buffer, '\n') == NULL)//in progress
+		return (ft_trim);//in progress
 }
 
 char	*get_next_line(int fd)
 {
-	char		*first_half;
-	static char	*second_half;
-	char		buffer[BUFFER_SIZE];
+	char		*line;
+	static char	*buffer;
 
-	first_half = NULL;
+	line = NULL;
 	if (fd < 0 || BUFFER_SIZE <= 0)
 		return (NULL);
-	if (second_half && *second_half != '\0')
-		first_half = strdup (second_half);
-	else
-		first_half = read_and_build(first_half, buffer, fd);
-	if (!first_half)
-			return (NULL);
-	second_half = ft_trim(first_half);
-	return (first_half);
+	if (!buffer || *buffer =='\0')
+		buffer = ft_read_and_fill(int fd);
+	line = build_line (line, buffer);
+	if (!buffer || *buffer =='\0')
+		free(buffer);
+	return (line);
 }
-/*
-	first_half = ft_calloc(1, BUFFER_SIZE * sizeof(char) + 1);
-	if (!first_half)
-		return (NULL);
-	if (second_half)
-	{
-		free(first_half);/
-		first_half = ft_strdup(second_half);
-		if (!first_half)
-			return (NULL);
-		if (ft_strchr(first_half, '\n') != NULL)
-		{
-			second_half = ft_trim(first_half, second_half);
-			return (first_half);
-		}
-	}
-	first_half = read_and_build(first_half, buffer, fd);
-	if (!first_half)
-		return (NULL);
-	if (ft_strchr(first_half, '\n') != NULL)
-		second_half = ft_trim(first_half, second_half);
-	if (!second_half || !*second_half)
-		free(second_half); //falta return null por si falla la reserva de memoria
-	return (first_half);
-}
-*/
