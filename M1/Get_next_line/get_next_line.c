@@ -54,10 +54,8 @@ char	*ft_trim(char **buffer)
 		free(line);
 		return (NULL);
 	}
-
 	free(*buffer);
 	*buffer = new_buffer;
-
 	return (line);
 }
 
@@ -77,6 +75,7 @@ char	*ft_read_and_fill(int fd)
 	}
 	return (buffer);
 }
+
 char	*build_line(char **buffer, int fd)
 {
 	char	*tmp;
@@ -86,7 +85,7 @@ char	*build_line(char **buffer, int fd)
 	{
 		readed = ft_read_and_fill(fd);
 		if (!readed)
-			break;
+			break ; //no me gusta esta parte ya que si hay un fallo en el calloc de rad_and_fill, seguiria?
 		tmp = ft_strjoin(*buffer, readed);
 		free(readed);
 		free(*buffer);
@@ -108,7 +107,6 @@ char	*get_next_line(int fd)
 		buffer = ft_read_and_fill(fd);
 	if (!buffer)
 		return (NULL);
-
 	line = build_line(&buffer, fd);
 	if (!line)
 	{

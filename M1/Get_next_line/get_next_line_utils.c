@@ -68,17 +68,23 @@ char	*ft_substr(char const *s, unsigned int start, size_t len)
 
 void	*ft_calloc(size_t nmemb, size_t size)
 {
-	void	*ptr;
+	unsigned char	*ptr;
+	size_t			total;
+	size_t			i;
 
-	if (nmemb == 0 || size == 0)
-		return (malloc(0));
-	if (nmemb > INT_MAX / size)
+	if (nmemb != 0 && size > INT_MAX / nmemb)
 		return (NULL);
-	ptr = (void *)malloc(nmemb * size);
-	if (ptr == NULL)
+	total = nmemb * size;
+	ptr = (unsigned char *)malloc(total);
+	if (!ptr)
 		return (NULL);
-	ft_bzero(ptr, nmemb * size);
-	return (ptr);
+	i = 0;
+	while (i < total)
+	{
+		ptr[i] = 0;
+		i++;
+	}
+	return ((void *)ptr);
 }
 
 char	*ft_strjoin(char *s1, const char *s2)
