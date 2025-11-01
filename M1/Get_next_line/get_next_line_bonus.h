@@ -1,17 +1,17 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   get_next_line.h                                    :+:      :+:    :+:   */
+/*   get_next_line_bonus.h                              :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: egalindo <egalindo@student.42barcelona.    +#+  +:+       +#+        */
+/*   By: egalindo <egalindo@student.42barcelon      +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2025/10/23 11:18:17 by egalindo          #+#    #+#             */
-/*   Updated: 2025/10/24 17:17:36 by egalindo         ###   ########.fr       */
+/*   Created: 2025/11/01 12:33:34 by egalindo          #+#    #+#             */
+/*   Updated: 2025/11/01 12:33:48 by egalindo         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#ifndef GET_NEXT_LINE_H
-# define GET_NEXT_LINE_H
+#ifndef GET_NEXT_LINE_BONUS_H
+# define GET_NEXT_LINE_BONUS_H
 
 /******************************************************************************/
 /*																			  */
@@ -23,6 +23,8 @@
 # include <unistd.h>
 # include <limits.h>
 # include <string.h>
+# include <sys/types.h>
+# include <sys/uio.h>
 /******************************************************************************/
 /* 																			  */
 /* 									 MACROS                                   */

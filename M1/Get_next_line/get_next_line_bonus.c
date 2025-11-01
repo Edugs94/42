@@ -1,16 +1,16 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   get_next_line.c                                    :+:      :+:    :+:   */
+/*   get_next_line_bonus.c                              :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: egalindo <egalindo@student.42barcelona.    +#+  +:+       +#+        */
+/*   By: egalindo <egalindo@student.42barcelon      +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2025/10/23 11:14:12 by egalindo          #+#    #+#             */
-/*   Updated: 2025/10/30 08:55:55 by egalindo         ###   ########.fr       */
+/*   Created: 2025/11/01 12:32:15 by egalindo          #+#    #+#             */
+/*   Updated: 2025/11/01 17:28:30 by egalindo         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#include "get_next_line.h"
+#include "get_next_line_bonus.h"
 
 char	*ft_trim(char **buffer)
 {
@@ -87,26 +87,26 @@ char	*build_line(char **buffer, int fd)
 
 char	*get_next_line(int fd)
 {
-	static char	*buffer;
+	static char	*buffer[1024];
 	char		*line;
 
 	if (fd < 0 || BUFFER_SIZE <= 0)
 		return (NULL);
-	if (!buffer)
-		buffer = ft_read_and_fill(fd);
-	if (!buffer)
+	if (!buffer[fd])
+		buffer[fd] = ft_read_and_fill(fd);
+	if (!buffer[fd])
 		return (NULL);
-	line = build_line(&buffer, fd);
+	line = build_line(&buffer[fd], fd);
 	if (!line)
 	{
-		free(buffer);
-		buffer = NULL;
+		free(buffer[fd]);
+		buffer[fd] = NULL;
 		return (NULL);
 	}
-	if (!(*buffer))
+	if (!(*buffer[fd]))
 	{
-		free(buffer);
-		buffer = NULL;
+		free(buffer[fd]);
+		buffer[fd] = NULL;
 	}
 	return (line);
 }
