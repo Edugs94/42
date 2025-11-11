@@ -6,7 +6,7 @@
 /*   By: egalindo <egalindo@student.42barcelon      +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/11/10 08:05:40 by egalindo          #+#    #+#             */
-/*   Updated: 2025/11/11 17:04:10 by egalindo         ###   ########.fr       */
+/*   Updated: 2025/11/11 18:18:13 by egalindo         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -35,7 +35,7 @@ int	execute (char *cmd, char **env)
 	
 	path = get_path(env);// asi??
 	cmd_splitted = ft_split(cmd);
-	execve(path, cmd_splitted, env);
+	execve(path, cmd_splitted, env); // si falla por no encontrar archivo o lo que sea escribir error y salir
 }
 
 int	main(int argc, char **argv, char **env)
@@ -62,8 +62,10 @@ int	main(int argc, char **argv, char **env)
 		if (infile == -1)
 			exit(1);
 		dup2(infile, 0);
+		close(infile);
 		dup2(fd[1], 1);
 		close(fd[0]);
+		close(fd[1]);
 		execute(cmd1, env);
 	}
 	pid2 = fork();
@@ -71,17 +73,19 @@ int	main(int argc, char **argv, char **env)
 		exit(-1);
 	if (pid2 == 0)
 	{
-		outfile = open(argv[4], O_WRONLY | O_CREAT | O_TRUNC, 0777);
+		outfile = open(argv[4], O_WRONLY | O_CREAT | O_TRUNC, 0660);//permisos de lectura yescritura  (para users and groups pero no para others)
 		if (outfile == -1)
-			exit(1);
+			exit(1);//sala dice que no deberiamos salirnos y deberiamos trabajar sobre un archivo que no podemos abrir, porque aunque no pueda escribir a un archivo quizas escribe a otroa cosa, hay programas que aunque de error al abrir el archivo continuan en ejecucion)
 		dup2(outfile, 1);
+		close(outfile);
 		dup2(fd[0], 0);
 		close(fd[1]);
+		close(fd[0]);
 		execute(cmd2, env);
 	}
 	close(fd[0]);
 	close(fd[1]);
-	wait(pid1, NULL, 0);
-	wait(pid2, NULL, 0);
+	waitpid(pid1, NULL, 0);
+	waitpid(pid2, NULL, 0);
 	return (0);
 }
