@@ -2,11 +2,7 @@
 
 # 📚 Born2beroot Cheatsheet
 
-This is a visual summary of key commands and configurations for the Born2beroot project.
-
 ---
-
-## 📸 Cheatsheet Images
 
 ![Born2beroot Cheatsheet 01](assets/Born2beroot_cheatsheet-01.png)
 ![Born2beroot Cheatsheet 02](assets/Born2beroot_cheatsheet-02.png)
