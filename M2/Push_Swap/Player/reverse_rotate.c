@@ -17,38 +17,37 @@ void	ft_rrotate(t_stack **stack)
 	t_stack	*iteri;
 	t_stack	*last;
 
-	// Corregido: Comprobación más segura
 	if (!*stack || !(*stack)->next)
 		return ;
 		
-	iteri = *stack; // Será el último
-	last = *stack; // Será el penúltimo
+	iteri = *stack;
+	last = *stack;
 
 	while (iteri->next)
 		iteri = iteri->next;
 	while (last->next != iteri)
 		last = last->next;
 		
-	last->next = NULL; // El penúltimo apunta a NULL
-	iteri->next = *stack; // El último apunta al primero
-	*stack = iteri; // El stack apunta al (antiguo) último
+	last->next = NULL;
+	iteri->next = *stack;
+	*stack = iteri;
 }
 
 void	ft_rra(t_stack **stack)
 {
 	ft_rrotate(stack);
-	printf("rra\n"); // Corregido: ft_printf -> printf
+	printf("rra\n");
 }
 
 void	ft_rrb(t_stack **stack)
 {
 	ft_rrotate(stack);
-	printf("rrb\n"); // Corregido: ft_printf -> printf
+	printf("rrb\n");
 }
 
 void	ft_rrr(t_stack **stack_1, t_stack **stack_2)
 {
 	ft_rrotate(stack_1);
 	ft_rrotate(stack_2);
-	printf("rrr\n"); // Corregido: ft_printf -> printf
+	printf("rrr\n");
 }

@@ -12,9 +12,6 @@
 
 #include "push_swap.h"
 
-// --- Funciones auxiliares añadidas ---
-
-// Una implementación simple de ft_atoi
 long	ft_atoi(const char *str)
 {
 	long	res;
@@ -51,15 +48,12 @@ void	free_stack(t_stack **stack)
 	*stack = NULL;
 }
 
-// --- Tus funciones (corregidas) ---
-
 int	*atoi_args(int argc, char **argv)
 {
 	int		*arr;
 	int		i;
 
 	i = 0;
-	// ¡¡CRÍTICO: Reservar memoria para el array!!
 	arr = (int *)malloc(sizeof(int) * (argc - 1));
 	if (arr == NULL)
 		return (NULL);
@@ -79,7 +73,7 @@ t_stack	*ft_lstnew(int content)
 	if (new_node == NULL)
 		return (NULL);
 	new_node->content = content;
-	new_node->index = 0; // Importante para add_index
+	new_node->index = 0;
 	new_node->next = NULL;
 	return (new_node);
 }
@@ -101,7 +95,6 @@ void	ft_lstadd_back(t_stack **lst, t_stack *new)
 	iter->next = new;
 }
 
-// Lógica de add_index corregida
 void	add_index(t_stack **stack, int size)
 {
 	int		i;
@@ -116,9 +109,7 @@ void	add_index(t_stack **stack, int size)
 	while (i < size)
 	{
 		iteri = *stack;
-		min = NULL; // Resetear min en cada iteración
-
-		// 1. Encontrar el primer candidato (uno que no tenga índice)
+		min = NULL;
 		while (iteri)
 		{
 			if (iteri->content > last && iteri->index == 0)
@@ -128,19 +119,16 @@ void	add_index(t_stack **stack, int size)
 			}
 			iteri = iteri->next;
 		}
-
-		// 2. Encontrar el mínimo real
 		iteri = *stack;
 		while (iteri)
 		{
-			// Si encontramos uno más pequeño que 'min' (y que no tenga índice)
 			if (iteri->content > last && iteri->content < min->content 
 				&& iteri->index == 0)
 				min = iteri;
 			iteri = iteri->next;
 		}
 
-		if (min) // Si encontramos un mínimo
+		if (min)
 		{
 			min->index = i;
 			last = min->content;
@@ -149,7 +137,6 @@ void	add_index(t_stack **stack, int size)
 	}
 }
 
-// Corregido: Renombrado a 'create_stack' y usa 'int_arr'
 t_stack	*create_stack(int size, int *int_arr)
 {
 	t_stack	*stack;
@@ -159,16 +146,14 @@ t_stack	*create_stack(int size, int *int_arr)
 	if (size <= 0 || !int_arr)
 		return (NULL);
 	i = 0;
-	// ¡CORREGIDO! No se usa ft_atoi, ya es un int
 	stack = ft_lstnew(int_arr[i]);
 	i++;
 	while (i < size)
 	{
-		// ¡CORREGIDO!
 		new_node = ft_lstnew(int_arr[i]);
 		if (!new_node)
 		{
-			free_stack(&stack); // Liberar lo creado si falla
+			free_stack(&stack);
 			return (NULL);
 		}
 		ft_lstadd_back(&stack, new_node);

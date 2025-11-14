@@ -14,11 +14,9 @@
 
 void	ft_swap(t_stack **stack)
 {
-	// Corregido: t_list -> t_stack
 	t_stack	*ptr1;
 	t_stack	*ptr2;
 
-	// Corregido: Comprobar si hay al menos 2 elementos
 	if (!*stack || !(*stack)->next)
 		return ;
 	ptr1 = *stack;
@@ -31,18 +29,18 @@ void	ft_swap(t_stack **stack)
 void	ft_sa(t_stack **stack)
 {
 	ft_swap(stack);
-	printf("sa\n"); // Corregido: ft_printf -> printf
+	printf("sa\n");
 }
 
 void	ft_sb(t_stack **stack)
 {
 	ft_swap(stack);
-	printf("sb\n"); // Corregido: ft_printf -> printf
+	printf("sb\n");
 }
 
 void	ft_ss(t_stack **stack_a, t_stack **stack_b)
 {
-	ft_swap(stack_a); // No llama a ft_sa para no imprimir doble
-	ft_swap(stack_b); // No llama a ft_sb
-	printf("ss\n"); // Corregido: ft_printf -> printf (y añadido \n)
+	ft_swap(stack_a);
+	ft_swap(stack_b);
+	printf("ss\n");
 }
