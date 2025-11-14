@@ -6,7 +6,7 @@
 /*   By: egalindo <egalindo@student.42barcelon      +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/11/12 14:51:16 by egalindo          #+#    #+#             */
-/*   Updated: 2025/11/13 18:59:46 by egalindo         ###   ########.fr       */
+/*   Updated: 2025/11/14 14:31:42 by egalindo         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -21,7 +21,7 @@ void	ft_swap(t_stack **stack) //para sa y sb
 		return ;
 	ptr1 = *stack;
 	ptr2 = ptr1->next;
-	ptr1->next = ptr2-->next;
+	ptr1->next = ptr2->next;
 	ptr2->next = ptr1;
 	*stack = ptr2;
 }

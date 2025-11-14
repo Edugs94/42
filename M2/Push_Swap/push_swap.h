@@ -6,7 +6,7 @@
 /*   By: egalindo <egalindo@student.42barcelon      +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/10/10 08:56:11 by egalindo          #+#    #+#             */
-/*   Updated: 2025/11/13 18:59:18 by egalindo         ###   ########.fr       */
+/*   Updated: 2025/11/14 12:05:23 by egalindo         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -18,7 +18,9 @@
 /*                                 EXTERN LIBS                                */
 /*  																		  */
 /******************************************************************************/
-
+# include <unistd.h>
+# include <stdlib.h>
+# include <limits.h>
 /******************************************************************************/
 /* 																			  */
 /* 									 MACROS                                   */
@@ -40,6 +42,7 @@
 typedef struct s_stack
 {
 	int				content;
+	int				index;
 	struct s_stack	*next;
 }	t_stack;
 
