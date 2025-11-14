@@ -11,21 +11,20 @@
 /* ************************************************************************** */
 
 #include "push_swap.h"
-#include <stdlib.h> // Añadido para system("clear")
 
-// Checker corregido:
-// Comprueba que A esté ordenado y B esté vacío.
 int checker(t_stack *stack_a, t_stack *stack_b, int size)
 {
 	t_stack *iteri;
 	int i;
 
-	if (stack_b) // stack_b debe estar vacío
+	if (stack_b)
 		return (-3);
-	if (!stack_a) // stack_a no puede estar vacío (a menos que size=0)
+	if (!stack_a)
 		return (-4);
 	iteri = stack_a;
 	i = 0;
+	if (size == 1)
+		return (0);
 	while (iteri->next)
 	{
 		if (iteri->content < iteri->next->content)
@@ -34,14 +33,11 @@ int checker(t_stack *stack_a, t_stack *stack_b, int size)
 			i++;
 		}
 		else
-			return (-1); // No está ordenado
+			return (-1);
 	}
-	// Si i == size - 1, significa que hemos hecho size-1 comparaciones
-	if (size > 0 && i != size - 1)
-		return (-2); // El tamaño no coincide
-	if (size == 1 && i == 0) // Caso especial: un solo número
-		return (0);
-	return (0); // ¡Correcto!
+	if (i != size - 1)
+		return (-2);
+	return (0);
 }
 
 int main(int argc, char **argv)
@@ -52,33 +48,27 @@ int main(int argc, char **argv)
 	t_stack *stack_b;
 	t_stack *iteri_a;
 	t_stack *iteri_b;
-	char comando[10]; // ¡Variable 'comando' declarada!
+	char order[10];
 
 	step = 0;
-	if (argc <= 2) // Arreglado el typo 'a'
+	if (argc <= 2)
 	{
 		printf("Write at least 2 numbers\n");
 		return (-1);
 	}
 	int_arr = atoi_args(argc, argv);
-	if (!int_arr) // Comprobar si malloc falló
+	if (!int_arr)
 		return (-1);
-	// Corregido: pasar argc - 1 (el tamaño)
 	stack_a = create_stack(argc - 1, int_arr);
-	// Corregido: pasar la dirección de stack_a
 	add_index(&stack_a, argc - 1);
 	stack_b = NULL;
 
-	// Corregido: checker ahora recibe stack_b y el tamaño
 	while (checker(stack_a, stack_b, argc - 1) != 0)
 	{
-		system("clear"); // <-- ¡AÑADIDO!
-
+		system("clear");
 		iteri_a = stack_a;
 		iteri_b = stack_b;
-
-		// --- IMPRESIÓN CORREGIDA ---
-		printf("\n--- Paso %d ---\n", step);
+		printf("\n--- Step %d ---\n", step);
 		printf("Stack A: Stack B:\n");
 		printf("------- -------\n");
 		while (iteri_a || iteri_b)
@@ -89,7 +79,7 @@ int main(int argc, char **argv)
 				iteri_a = iteri_a->next;
 			}
 			else
-				printf("           "); // Espacios para alinear
+				printf("           ");
 			if (iteri_b)
 			{
 				printf("%d\n", iteri_b->content);
@@ -99,61 +89,45 @@ int main(int argc, char **argv)
 				printf("\n");
 		}
 		printf("---------------------\n");
-		// --- FIN DE IMPRESIÓN ---
-
-		printf("Introduce un movimiento (sa, pb, rra, ...): ");
-
-		if (fgets(comando, sizeof(comando), stdin) == NULL)
+		printf("Introduce an order: ");
+		if (fgets(order, sizeof(order), stdin) == NULL)
 		{
-			printf("Fin de la entrada.\n");
+			printf("End\n");
 			break;
 		}
-
-		comando[strcspn(comando, "\n")] = '\0';
-
-		int movimiento_valido = 1;
-
-		if (strcmp(comando, "sa") == 0)
+		order[strcspn(order, "\n")] = '\0';
+		int valid_move = 1;
+		if (strcmp(order, "sa") == 0)
 			ft_sa(&stack_a);
-		else if (strcmp(comando, "sb") == 0)
+		else if (strcmp(order, "sb") == 0)
 			ft_sb(&stack_b);
-		else if (strcmp(comando, "ss") == 0)
+		else if (strcmp(order, "ss") == 0)
 			ft_ss(&stack_a, &stack_b);
-		// Corregido: ft_pa(destino_A, origen_B)
-		else if (strcmp(comando, "pa") == 0)
+		else if (strcmp(order, "pa") == 0)
 			ft_pa(&stack_a, &stack_b);
-		else if (strcmp(comando, "pb") == 0)
+		else if (strcmp(order, "pb") == 0)
 			ft_pb(&stack_a, &stack_b);
-		else if (strcmp(comando, "ra") == 0)
+		else if (strcmp(order, "ra") == 0)
 			ft_ra(&stack_a);
-		else if (strcmp(comando, "rb") == 0)
+		else if (strcmp(order, "rb") == 0)
 			ft_rb(&stack_b);
-		else if (strcmp(comando, "rr") == 0)
+		else if (strcmp(order, "rr") == 0)
 			ft_rr(&stack_a, &stack_b);
-		// --- Movimientos añadidos ---
-		else if (strcmp(comando, "rra") == 0)
+		else if (strcmp(order, "rra") == 0)
 			ft_rra(&stack_a);
-		else if (strcmp(comando, "rrb") == 0)
+		else if (strcmp(order, "rrb") == 0)
 			ft_rrb(&stack_b);
-		else if (strcmp(comando, "rrr") == 0)
+		else if (strcmp(order, "rrr") == 0)
 			ft_rrr(&stack_a, &stack_b);
 		else
-		{
-			printf("Error: Movimiento '%s' no reconocido.\n", comando);
-			movimiento_valido = 0;
-			// Pequeña pausa para que el usuario vea el error
-			// (Opcional, requiere <unistd.h>)
-			// sleep(1); 
-		}
-
-		if (movimiento_valido)
+			valid_move = 0;
+		if (valid_move)
 			step++;
 	}
-
-	system("clear"); // Limpiar la pantalla una última vez
+	system("clear");
 	iteri_a = stack_a;
 	iteri_b = stack_b;
-	printf("\n--- Paso %d ---\n", step);
+	printf("\n--- Step %d ---\n", step);
 		printf("Stack A: Stack B:\n");
 		printf("------- -------\n");
 		while (iteri_a || iteri_b)
@@ -164,7 +138,7 @@ int main(int argc, char **argv)
 				iteri_a = iteri_a->next;
 			}
 			else
-				printf("           "); // Espacios para alinear
+				printf("           ");
 			if (iteri_b)
 			{
 				printf("%d\n", iteri_b->content);
@@ -173,10 +147,23 @@ int main(int argc, char **argv)
 			else
 				printf("\n");
 		}
-		printf("---------------------\n");
+	printf("---------------------\n");
 	printf("Game passed on %d steps!\n", step);
-
-	// Liberar memoria
+	printf("                   \n");
+    printf(" Yuuuhuuuuuuuu!\n");
+    printf("              (   ()   )\n");
+    printf("    ) ________    //  )\n");
+    printf(" ()  |\\       \\  //\n");
+    printf("( \\\\__ \\ ______\\\\//\n");
+    printf("   \\__) |       |\n");
+    printf("     |  |       |\n");
+    printf("      \\ |       |\n");
+    printf("       \\|_______|\n");
+    printf("       //    \\\\\n");
+    printf("      ((     ||\n");
+    printf("       \\\\    ||\n");
+    printf("     ( ()    ||\n");
+    printf("      (      () ) )\n");
 	free_stack(&stack_a);
 	free_stack(&stack_b);
 	free(int_arr);
