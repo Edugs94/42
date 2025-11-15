@@ -1,27 +1,33 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   push_swap.c                                        :+:      :+:    :+:   */
+/*   perform_turk.c                                     :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: egalindo <egalindo@student.42barcelon      +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2025/11/12 14:31:29 by egalindo          #+#    #+#             */
-/*   Updated: 2025/11/14 14:13:52 by egalindo         ###   ########.fr       */
+/*   Created: 2025/11/15 18:26:58 by egalindo          #+#    #+#             */
+/*   Updated: 2025/11/15 19:08:10 by egalindo         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#include "push_swap.h"
-
-int	main(int argc, char **argv)
+void	ft_addtarget(t_stack **stack)
 {
-	int		*int_arr;
-	t_stack	*stack_a;
-	t_stack	*stack_b;
+	t_stack	*iteri;
 
-	if (arg_checker(argc,argv) == -1)//parseo y comprobacion de errores
-		return (-1);
-	int_arr = atoi_args(argc ,argv);
-	stack_a = create_stack(argc, int_arr);
-	add_index(stack_a, argc - 1);
-	stack_b = NULL;
+	iteri = *stack;
+	while (iteri->next)
+	{
+		iteri->target
+	}
+}
+
+void	ft_turk(t_stack **stack_a, t_stack_b, size)
+{
+	int	i;
+
+	i = 0
+	while (i < size - 3)
+		ft_pb(stack_a, stack_b);
+	sort_3_a(stack_a);
+	ft_addtarget(stack_b);
 }

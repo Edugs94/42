@@ -5,40 +5,41 @@
 /*                                                    +:+ +:+         +:+     */
 /*   By: egalindo <egalindo@student.42barcelon      +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2025/11/13 18:04:12 by egalindo          #+#    #+#             */
-/*   Updated: 2025/11/14 14:49:32 by egalindo         ###   ########.fr       */
+/*   Created: 2025/11/15 13:20:31 by egalindo          #+#    #+#             */
+/*   Updated: 2025/11/15 18:46:32 by egalindo         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "push_swap.h"
 
-void	ft_push(t_stack **stack_1, t_stack **stack_2)
+void	ft_push(t_stack **stack_from, t_stack **stack_to)
 {
 	t_stack	*ptr;
 
-	if (!*stack_2)
+	if (!*stack_from)
+		return ;
+	ptr = *stack_from;
+	*stack_from = (*stack_from)->next;
+	if (!*stack_to)
 	{
-		*stack_2 = *stack_1;
-		*stack_1 = *stack_1->next;
-		*stack_2->next = NULL;
+		*stack_to = ptr;
+		(*stack_to)->next = NULL;
 	}
 	else
 	{
-		ptr = *stack_1;
-		*stack_1 = *stack_1->next;
-		ptr->next = *stack_2;
-		*stack_2 = ptr;
+		ptr->next = *stack_to;
+		*stack_to = ptr;
 	}
 }
 
-void	ft_pa(t_stack **stack_1, t_stack **stack_2)
+void	ft_pa(t_stack **stack_a, t_stack **stack_b)
 {
-	ft_push(stack_2, stack_1);
-	ft_printf("pa\n");
+	ft_push(stack_b, stack_a);
+	printf("pa\n");
 }
 
-void	ft_pb(t_stack **stack_1, t_stack **stack_2)
+void	ft_pb(t_stack **stack_a, t_stack **stack_b)
 {
-	ft_push(stack_1, stack_2);
-	ft_printf("pb\n");
+	ft_push(stack_a, stack_b);
+	printf("pb\n");
 }
