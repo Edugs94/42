@@ -6,7 +6,7 @@
 /*   By: egalindo <egalindo@student.42barcelon      +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/11/15 13:20:47 by egalindo          #+#    #+#             */
-/*   Updated: 2025/11/15 18:53:21 by egalindo         ###   ########.fr       */
+/*   Updated: 2025/11/17 15:58:41 by egalindo         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -48,6 +48,8 @@ typedef struct s_stack
 	int				content;
 	int				index;
 	int				target;
+	int				topcost;
+	int				targetcost;
 	struct s_stack	*next;
 }	t_stack;
 

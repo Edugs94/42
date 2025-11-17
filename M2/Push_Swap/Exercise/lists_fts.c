@@ -6,7 +6,7 @@
 /*   By: egalindo <egalindo@student.42barcelon      +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/11/15 14:35:29 by egalindo          #+#    #+#             */
-/*   Updated: 2025/11/15 18:25:02 by egalindo         ###   ########.fr       */
+/*   Updated: 2025/11/17 12:46:22 by egalindo         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -41,6 +41,27 @@ t_stack	*ft_lstnew(int content)
 	new_node->next = NULL;
 	return (new_node);
 }
+
+int	ft_node_position(t_stack *stack, t_stack *node)
+{
+	int i;
+	t_stack	*iteri;
+
+	i = 0;
+	iteri = stack;
+	if (!stack || !node)
+		exit(1);
+	while (iteri != node)
+	{
+		iteri = iteri->next;
+		i++;
+	}
+	if (iteri == node)
+		return (i);
+	else
+		exit(2);
+}
+
 
 void	ft_lstadd_back(t_stack **lst, t_stack *new)
 {
