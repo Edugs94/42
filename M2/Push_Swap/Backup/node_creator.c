@@ -5,58 +5,19 @@
 /*                                                    +:+ +:+         +:+     */
 /*   By: egalindo <egalindo@student.42barcelon      +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2025/11/15 13:19:59 by egalindo          #+#    #+#             */
-/*   Updated: 2025/11/15 13:20:12 by egalindo         ###   ########.fr       */
+/*   Created: 2025/11/13 11:23:54 by egalindo          #+#    #+#             */
+/*   Updated: 2025/11/14 13:09:16 by egalindo         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "push_swap.h"
 
-long	ft_atoi(const char *str)
-{
-	long	res;
-	int		sign;
-
-	res = 0;
-	sign = 1;
-	while (*str == ' ' || (*str >= 9 && *str <= 13))
-		str++;
-	if (*str == '-')
-		sign = -1;
-	if (*str == '-' || *str == '+')
-		str++;
-	while (*str >= '0' && *str <= '9')
-	{
-		res = res * 10 + (*str - '0');
-		str++;
-	}
-	return (res * sign);
-}
-
-void	free_stack(t_stack **stack)
-{
-	t_stack	*current;
-	t_stack	*next;
-
-	current = *stack;
-	while (current != NULL)
-	{
-		next = current->next;
-		free(current);
-		current = next;
-	}
-	*stack = NULL;
-}
-
 int	*atoi_args(int argc, char **argv)
 {
 	int		*arr;
-	int		i;
+	size_t	i;
 
 	i = 0;
-	arr = (int *)malloc(sizeof(int) * (argc - 1));
-	if (arr == NULL)
-		return (NULL);
 	while (i < argc - 1)
 	{
 		arr[i] = ft_atoi(argv[i + 1]);
@@ -95,68 +56,46 @@ void	ft_lstadd_back(t_stack **lst, t_stack *new)
 	iter->next = new;
 }
 
-void	add_index(t_stack **stack, int size)
+void	add_index(t_stack **stack, int size)//asignamos el orden final a cada elemento del nodo
 {
-	int		i;
+	size_t	i;
 	long	last;
 	t_stack	*min;
 	t_stack	*iteri;
 
 	i = 0;
-	if (!stack || !*stack || size <= 0)
+	if (!stack || size <= 1)
 		return ;
 	last = LONG_MIN;
 	while (i < size)
 	{
 		iteri = *stack;
-		min = NULL;
-		while (iteri)
+		min = *stack;
+		while (iteri->next)
 		{
-			if (iteri->content > last && iteri->index == 0)
-			{
-				min = iteri;
-				break;
-			}
 			iteri = iteri->next;
-		}
-		iteri = *stack;
-		while (iteri)
-		{
-			if (iteri->content > last && iteri->content < min->content 
-				&& iteri->index == 0)
+			if (iteri->content > last && iteri->content < min->content)
 				min = iteri;
-			iteri = iteri->next;
 		}
-
-		if (min)
-		{
-			min->index = i;
-			last = min->content;
-		}
+		min->index = i;
+		last = min->content;
 		i++;
 	}
 }
 
-t_stack	*create_stack(int size, int *int_arr)
+t_stack	*stack(int size, int *argv)//queremos devolver el primer elemento de la lista
 {
 	t_stack	*stack;
 	t_stack	*new_node;
-	int		i;
+	size_t	i;
 
-	if (size <= 0 || !int_arr)
-		return (NULL);
 	i = 0;
-	stack = ft_lstnew(int_arr[i]);
+	stack = ft_lstnew(ft_atoi(argv[i]));
 	i++;
 	while (i < size)
 	{
-		new_node = ft_lstnew(int_arr[i]);
-		if (!new_node)
-		{
-			free_stack(&stack);
-			return (NULL);
-		}
-		ft_lstadd_back(&stack, new_node);
+		new_node = ft_lstnew(argv[i]);
+		ft_add_back(&stack, new_node);
 		i++;
 	}
 	return (stack);

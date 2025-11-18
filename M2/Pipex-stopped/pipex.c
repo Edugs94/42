@@ -6,7 +6,7 @@
 /*   By: egalindo <egalindo@student.42barcelon      +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/11/10 08:05:40 by egalindo          #+#    #+#             */
-/*   Updated: 2025/11/11 18:18:13 by egalindo         ###   ########.fr       */
+/*   Updated: 2025/11/12 09:55:27 by egalindo         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -23,9 +23,17 @@ void	exit_handler(int n)
 	}
 	exit(0);
 }
-
-char	*get_path(char **env)
+char *get_path(char **env)
 {
+    int i = 0;
+    
+    while (env[i])
+    {
+        if (ft_strncmp(env[i], "PATH=", 5) == 0)
+            return (env[i] + 5); 
+        i++;
+    }
+    return NULL; // PATH not found
 }
 
 int	execute (char *cmd, char **env)

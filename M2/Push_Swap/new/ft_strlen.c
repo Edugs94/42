@@ -1,32 +1,23 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   chunker.c                                          :+:      :+:    :+:   */
+/*   ft_strlen.c                                        :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: egalindo <egalindo@student.42barcelon      +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2025/11/15 17:01:32 by egalindo          #+#    #+#             */
-/*   Updated: 2025/11/15 17:22:38 by egalindo         ###   ########.fr       */
+/*   Created: 2025/09/27 11:30:41 by egalindo          #+#    #+#             */
+/*   Updated: 2025/11/18 10:59:55 by egalindo         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
+#include "push_swap.h"
 
-int	ft_sqrt(int n)
+size_t	ft_strlen(const char *s)
 {
-	int i;
+	size_t	len;
 
-	i = 0;
-	while((i * i) < n)
-		i++;
-	if ((i * i) > n)
-		return (i - 1);
-	else
-		return (i);
+	len = 0;
+	while (s[len])
+		len++;
+	return (len);
 }
-
-int	chunk_calculator(int size)
-{
-	return((3/4) * ft_sqrt(size))
-}
-
-

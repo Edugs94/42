@@ -5,19 +5,19 @@
 /*                                                    +:+ +:+         +:+     */
 /*   By: egalindo <egalindo@student.42barcelon      +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2025/11/15 13:22:55 by egalindo          #+#    #+#             */
-/*   Updated: 2025/11/15 13:22:58 by egalindo         ###   ########.fr       */
+/*   Created: 2025/11/12 14:51:16 by egalindo          #+#    #+#             */
+/*   Updated: 2025/11/14 14:31:42 by egalindo         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "push_swap.h"
 
-void	ft_swap(t_stack **stack)
+void	ft_swap(t_stack **stack) //para sa y sb
 {
-	t_stack	*ptr1;
-	t_stack	*ptr2;
+	t_list	*ptr1;
+	t_list	*ptr2;
 
-	if (!*stack || !(*stack)->next)
+	if (!**stack || !*stack)
 		return ;
 	ptr1 = *stack;
 	ptr2 = ptr1->next;
@@ -29,18 +29,18 @@ void	ft_swap(t_stack **stack)
 void	ft_sa(t_stack **stack)
 {
 	ft_swap(stack);
-	printf("sa\n");
+	ft_printf("sa\n");
 }
 
 void	ft_sb(t_stack **stack)
 {
 	ft_swap(stack);
-	printf("sb\n");
+	ft_printf("sb\n");
 }
 
 void	ft_ss(t_stack **stack_a, t_stack **stack_b)
 {
-	ft_swap(stack_a);
-	ft_swap(stack_b);
-	printf("ss\n");
+	ft_sa(stack_a);
+	ft_sb(stack_b);
+	ft_printf("ss");
 }
