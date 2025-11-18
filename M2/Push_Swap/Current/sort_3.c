@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   sort_3.c                                           :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: egalindo <egalindo@student.42barcelon      +#+  +:+       +#+        */
+/*   By: edu-legion <edu-legion@student.42.fr>      +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/11/15 14:32:51 by egalindo          #+#    #+#             */
-/*   Updated: 2025/11/15 18:53:09 by egalindo         ###   ########.fr       */
+/*   Updated: 2025/11/18 23:37:13 by edu-legion       ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -14,15 +14,15 @@
 
 void	sort_3_a(t_stack **stack)
 {
-	int	*i1;
-	int	*i2;
-	int	*i3;
+	int	i1;
+	int	i2;
+	int	i3;
 
 	if (ft_lstsize(*stack) != 3)
 		return ;
-	i1 = *stack->index;
-	i2 = *stack->next->index;
-	i3 = *stack->next->next->index;
+	i1 = (*stack)->index;
+	i2 = (*stack)->next->index;
+	i3 = (*stack)->next->next->index;
 	if (i1 > i2 && i2 < i3 && i1 < i3) //213
 		ft_sa(stack);
 	if (i1 > i2 && i2 < i3 && i1 > i3) //312
@@ -42,15 +42,15 @@ void	sort_3_a(t_stack **stack)
 
 void	sort_3_b(t_stack **stack)
 {
-	int	*i1;
-	int	*i2;
-	int	*i3;
+	int	i1;
+	int	i2;
+	int	i3;
 
 	if (ft_lstsize(*stack) != 3)
 		return ;
-	i1 = *stack->index;
-	i2 = *stack->next->index;
-	i3 = *stack->next->next->index;
+	i1 = (*stack)->index;
+	i2 = (*stack)->next->index;
+	i3 = (*stack)->next->next->index;
 	if (i1 > i2 && i2 < i3 && i1 < i3) //213
 		ft_sb(stack);
 	if (i1 > i2 && i2 < i3 && i1 > i3) //312

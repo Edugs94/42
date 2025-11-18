@@ -1,32 +1,33 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   free_and_exit.c                                    :+:      :+:    :+:   */
+/*   ft_strdup.c                                        :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: egalindo <egalindo@student.42barcelon      +#+  +:+       +#+        */
+/*   By: edu-legion <edu-legion@student.42.fr>      +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2025/11/18 14:34:01 by egalindo          #+#    #+#             */
-/*   Updated: 2025/11/18 15:03:26 by egalindo         ###   ########.fr       */
+/*   Created: 2025/10/07 09:22:03 by egalindo          #+#    #+#             */
+/*   Updated: 2025/11/18 22:47:49 by edu-legion       ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "push_swap.h"
-#include <stdio.h>
 
-void	free_and_exit(int error, char **matrix, int *int_arr)
+char	*ft_strdup(const char *s)
 {
-	printf("Error\n");
-	if (error == 1)
-		exit (1);
-	if (error == 2)
+	char	*ptr;
+	size_t	i;
+
+	if (!s)
+		return (NULL);	
+	ptr = (char *)malloc(ft_strlen(s) + 1);
+	if (ptr == NULL)
+		return (NULL);
+	i = 0;
+	while (i < ft_strlen(s))
 	{
-		free(matrix);
-		exit(2);
+		ptr[i] = s[i];
+		i++;
 	}
-	if (error == 3)
-	{
-		free(matrix);
-		free(int_arr);
-		exit(3);
-	}
+	ptr[i] = '\0';
+	return (ptr);
 }

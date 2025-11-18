@@ -3,19 +3,19 @@
 /*                                                        :::      ::::::::   */
 /*   lists_fts.c                                        :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: egalindo <egalindo@student.42barcelon      +#+  +:+       +#+        */
+/*   By: edu-legion <edu-legion@student.42.fr>      +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/11/15 14:35:29 by egalindo          #+#    #+#             */
-/*   Updated: 2025/11/17 12:46:22 by egalindo         ###   ########.fr       */
+/*   Updated: 2025/11/18 23:40:44 by edu-legion       ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "push_swap.h"
 
-int	ft_lstsize(t_list *lst)
+int	ft_lstsize(t_stack *lst)
 {
 	unsigned int	i;
-	t_list			*iter;
+	t_stack			*iter;
 
 	i = 0;
 	if (!lst)

@@ -1,27 +1,23 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   push_swap.c                                        :+:      :+:    :+:   */
+/*   ft_strlen.c                                        :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: egalindo <egalindo@student.42barcelon      +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2025/11/12 14:31:29 by egalindo          #+#    #+#             */
-/*   Updated: 2025/11/14 14:13:52 by egalindo         ###   ########.fr       */
+/*   Created: 2025/09/27 11:30:41 by egalindo          #+#    #+#             */
+/*   Updated: 2025/11/18 10:59:55 by egalindo         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "push_swap.h"
 
-int	main(int argc, char **argv)
+size_t	ft_strlen(const char *s)
 {
-	int		*int_arr;
-	t_stack	*stack_a;
-	t_stack	*stack_b;
+	size_t	len;
 
-	if (arg_checker(argc,argv) == -1)//parseo y comprobacion de errores
-		return (-1);
-	int_arr = atoi_args(argc ,argv);
-	stack_a = create_stack(argc, int_arr);
-	add_index(stack_a, argc - 1);
-	stack_b = NULL;
+	len = 0;
+	while (s[len])
+		len++;
+	return (len);
 }
