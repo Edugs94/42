@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   push_swap.h                                        :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: egalindo <egalindo@student.42barcelon      +#+  +:+       +#+        */
+/*   By: edu-legion <edu-legion@student.42.fr>      +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/10/10 08:56:11 by egalindo          #+#    #+#             */
-/*   Updated: 2025/11/18 19:08:18 by egalindo         ###   ########.fr       */
+/*   Updated: 2025/11/18 22:48:04 by edu-legion       ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -50,6 +50,7 @@ size_t	ft_strlen(const char *s);
 size_t	ft_strlcpy(char *dst, const char *src, size_t size);
 int		ft_atoi(const char *nptr, char **matrix);
 char	**ft_split(char const *s, char c);
+char	*ft_strdup(const char *s);
 // --- free_and_exit.c ---
 void	free_and_exit(int error, char **matrix, int *int_arr);
 // --- validate_and_parse_utils.c ---

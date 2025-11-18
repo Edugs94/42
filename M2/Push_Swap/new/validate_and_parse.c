@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   validate_and_parse.c                               :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: egalindo <egalindo@student.42barcelon      +#+  +:+       +#+        */
+/*   By: edu-legion <edu-legion@student.42.fr>      +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/11/18 10:11:05 by egalindo          #+#    #+#             */
-/*   Updated: 2025/11/18 20:09:33 by egalindo         ###   ########.fr       */
+/*   Updated: 2025/11/18 22:47:02 by edu-legion       ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -45,8 +45,9 @@ static char	**remove_first_element(int argc, char **argv)
 	matrix = malloc (sizeof(char *) * ((argc - 1) + 1));
 	while (argv[i])
 	{
-		matrix[i - 1] = malloc(sizeof(char) * ft_strlen(argv[i]) + 1);
-		matrix[i - 1] = argv[i];
+		matrix[i - 1] = ft_strdup(argv[i]);
+		if (!matrix[i - 1])
+			free_and_exit(2, matrix, NULL);
 		i++;
 	}
 	matrix[i - 1] = NULL;
