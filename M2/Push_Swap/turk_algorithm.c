@@ -6,7 +6,7 @@
 /*   By: edu-legion <edu-legion@student.42.fr>      +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/11/19 10:06:39 by egalindo          #+#    #+#             */
-/*   Updated: 2025/11/19 19:54:37 by edu-legion       ###   ########.fr       */
+/*   Updated: 2025/11/19 22:24:22 by edu-legion       ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -15,7 +15,6 @@
 static void	add_top_cost(t_stack **stack)
 {
 	int		i;
-	int		top_cost;
 	t_stack	*iteri;
 
 	iteri = *stack;
@@ -79,8 +78,6 @@ static t_stack	*get_min_cost(t_stack **stack)
 void	turk_algorithm(t_stack **stack_a, t_stack **stack_b, int size)
 {
 	int		i;
-	t_stack	*iteri_a;
-	t_stack	*iteri_b;
 	t_stack	*min;
 
 	i = 0;

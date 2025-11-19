@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   validate_and_parse_utils.c                         :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: egalindo <egalindo@student.42barcelon      +#+  +:+       +#+        */
+/*   By: edu-legion <edu-legion@student.42.fr>      +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/11/18 14:22:21 by egalindo          #+#    #+#             */
-/*   Updated: 2025/11/18 19:47:56 by egalindo         ###   ########.fr       */
+/*   Updated: 2025/11/19 22:24:31 by edu-legion       ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -32,7 +32,6 @@ int	*atoi_args(int size, char **matrix)
 void	check_chars(char *str, char *limit, char **matrix)
 {
 	int	i;
-	int	j;
 
 	i = 0;
 	while (str[i])
