@@ -6,7 +6,7 @@
 /*   By: edu-legion <edu-legion@student.42.fr>      +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/10/10 08:56:11 by egalindo          #+#    #+#             */
-/*   Updated: 2025/11/18 23:40:15 by edu-legion       ###   ########.fr       */
+/*   Updated: 2025/11/19 18:27:56 by egalindo         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -43,9 +43,10 @@ typedef struct s_stack
 {
 	int				content;
 	int				index;
-	int				target;
-	int				topcost;
-	int				targetcost;
+	struct s_stack	*target;
+	int				top_cost;
+	int				target_cost;
+	int				total_cost;
 	struct s_stack	*next;
 }	t_stack;
 
@@ -86,8 +87,19 @@ void	ft_rrr(t_stack **stack_1, t_stack **stack_2);
 void	sort_3_a(t_stack **stack);
 void	sort_3_b(t_stack **stack);
 // --- Lists aux functions ---
-int	ft_lstsize(t_stack *lst);
+int		ft_lstsize(t_stack *lst);
 t_stack	*ft_lstnew(int content);
-int		ft_node_position(t_stack *stack, t_stack *node);
+int		ft_node_position(t_stack *node, t_stack *stack);
 void	ft_lstadd_back(t_stack **lst, t_stack *new);
+void    ft_lstclear(t_stack **lst);
+// --- Node Creator ---
+void	free_stack(t_stack **stack);
+t_stack	*create_stack(int *int_arr, int size);
+// --- Stack and Sort ---
+void	stack_and_sort(int *clean_data, int size);
+//--- Turk algorithm ---
+void	turk_algorithm(t_stack **stack_a, t_stack **stack_b, int size);
+//--- Rotate and push ---
+int		cheapest_rotation(t_stack *node, t_stack **stack);
+void	rotate_and_push(t_stack *min, t_stack **stack_a, t_stack **stack_b);
 #endif

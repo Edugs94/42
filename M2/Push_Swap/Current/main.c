@@ -1,12 +1,12 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   main_validate_and_parse.c                          :+:      :+:    :+:   */
+/*   main.c                                             :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: edu-legion <edu-legion@student.42.fr>      +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/11/18 10:49:30 by egalindo          #+#    #+#             */
-/*   Updated: 2025/11/18 23:22:33 by edu-legion       ###   ########.fr       */
+/*   Updated: 2025/11/19 18:08:42 by egalindo         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -21,8 +21,8 @@ int	main(int argc, char **argv)
 
 	i = 0;
 	clean_data = validate_and_parse(argc, argv, &size);
-	
-	//free(clean_data);
+	stack_and_sort(clean_data, size);
+	free(clean_data);
 	return (0);
 }
 

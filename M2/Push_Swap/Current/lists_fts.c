@@ -6,7 +6,7 @@
 /*   By: edu-legion <edu-legion@student.42.fr>      +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/11/15 14:35:29 by egalindo          #+#    #+#             */
-/*   Updated: 2025/11/18 23:40:44 by edu-legion       ###   ########.fr       */
+/*   Updated: 2025/11/19 18:27:33 by egalindo         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -42,7 +42,7 @@ t_stack	*ft_lstnew(int content)
 	return (new_node);
 }
 
-int	ft_node_position(t_stack *stack, t_stack *node)
+int	ft_node_position(t_stack *node, t_stack *stack)
 {
 	int i;
 	t_stack	*iteri;
@@ -56,10 +56,24 @@ int	ft_node_position(t_stack *stack, t_stack *node)
 		iteri = iteri->next;
 		i++;
 	}
-	if (iteri == node)
-		return (i);
-	else
-		exit(2);
+	return (i);
+}
+
+void	ft_lstclear(t_stack **lst)
+{
+	t_stack	*iter;
+	t_stack	*curr;
+
+	if (*lst == NULL || lst == NULL)
+		return ;
+	iter = *lst;
+	while (iter)
+	{
+		curr = iter;
+		iter = iter->next;
+		free(curr);
+	}
+	*lst = NULL;
 }
 
 
