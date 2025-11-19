@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   rotate_and_push.c                                  :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: egalindo <egalindo@student.42barcelon      +#+  +:+       +#+        */
+/*   By: edu-legion <edu-legion@student.42.fr>      +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/11/19 11:48:13 by egalindo          #+#    #+#             */
-/*   Updated: 2025/11/19 18:20:41 by egalindo         ###   ########.fr       */
+/*   Updated: 2025/11/19 21:40:56 by edu-legion       ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -22,40 +22,62 @@ int	cheapest_rotation(t_stack *node, t_stack **stack)
 	if (position <= size / 2)
 		return (position);
 	else
-		return (-position + size);
+		return (position - size);
+}
+
+static void		single_rotation(int moves_b, int moves_a, t_stack **stack_a, t_stack **stack_b)
+{
+	while (moves_b != 0)
+	{
+		if (moves_b > 0)
+		{
+			ft_rb(stack_b);
+			moves_b--;
+		}
+		if (moves_b < 0)
+		{
+			ft_rrb(stack_b);
+			moves_b++;
+		}
+	}
+	while (moves_a != 0)
+	{
+		if (moves_a > 0)
+		{
+			ft_ra(stack_a);
+			moves_a--;
+		}
+		if (moves_a < 0)
+		{
+			ft_rra(stack_a);
+			moves_a++;
+		}
+	}
+}
+static void		multiple_rotation(int moves_b, int moves_a, t_stack **stack_a, t_stack **stack_b)
+{
+	while (moves_b > 0 && moves_a > 0)
+	{
+		ft_rr(stack_a, stack_b);
+		moves_b--;
+		moves_a--;
+	}
+	while (moves_b < 0 && moves_a < 0)
+	{
+		ft_rrr(stack_a, stack_b);
+		moves_b++;
+		moves_a++;
+	}
+	single_rotation(moves_b, moves_a, stack_a, stack_b);
 }
 
 void	rotate_and_push(t_stack *min, t_stack **stack_a, t_stack **stack_b)
 {
-	int	moves;
+	int	moves_b;
+	int	moves_a;
 
-	moves = cheapest_rotation(min, stack_b);
-	while (moves != 0)
-	{
-		if (moves > 0)
-		{
-			ft_rb(stack_b);
-			moves--;
-		}
-		if (moves < 0)
-		{
-			ft_rrb(stack_b);
-			moves++;
-		}
-	}
-	moves = cheapest_rotation(min->target, stack_a);
-	while (moves != 0)
-	{
-		if (moves > 0)
-		{
-			ft_ra(stack_a);
-			moves--;
-		}
-		if (moves < 0)
-		{
-			ft_rra(stack_a);
-			moves++;
-		}
-	}
+	moves_b = cheapest_rotation(min, stack_b);
+	moves_a = cheapest_rotation(min->target, stack_a);
+	multiple_rotation(moves_b, moves_a, stack_a, stack_b);
 	ft_pa(stack_a, stack_b);
 }

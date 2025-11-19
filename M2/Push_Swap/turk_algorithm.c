@@ -3,33 +3,14 @@
 /*                                                        :::      ::::::::   */
 /*   turk_algorithm.c                                   :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: egalindo <egalindo@student.42barcelon      +#+  +:+       +#+        */
+/*   By: edu-legion <edu-legion@student.42.fr>      +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/11/19 10:06:39 by egalindo          #+#    #+#             */
-/*   Updated: 2025/11/19 15:06:08 by egalindo         ###   ########.fr       */
+/*   Updated: 2025/11/19 19:54:37 by edu-legion       ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "push_swap.h"
-
-static void	add_target(t_stack **stack_a, t_stack **stack_b)
-{
-	t_stack	*iteri_a;
-	t_stack	*iteri_b;
-
-	iteri_b = *stack_b;
-	while (iteri_b)
-	{
-		iteri_a = *stack_a;
-		while (iteri_a != NULL && iteri_b->index > iteri_a->index)
-			iteri_a = iteri_a->next;
-		if (iteri_a != NULL && iteri_b->index < iteri_a->index)
-			iteri_b->target = iteri_a;
-		else
-			iteri_b->target = (*stack_a);
-		iteri_b = iteri_b->next;
-	}
-}
 
 static void	add_top_cost(t_stack **stack)
 {
@@ -71,7 +52,7 @@ void	add_total_cost(t_stack **stack_a, t_stack **stack_b)
 					iteri_b->target_cost = ft_lstsize(*stack_a) - i;
 				iteri_b->total_cost = iteri_b->target_cost + iteri_b->top_cost;
 			}
-			else
+			//else
 				iteri_a = iteri_a->next;
 			i++;
 		}
@@ -115,5 +96,4 @@ void	turk_algorithm(t_stack **stack_a, t_stack **stack_b, int size)
 		min = get_min_cost(stack_b);
 		rotate_and_push(min, stack_a, stack_b);
 	}
-	//find min index and sort
 }
