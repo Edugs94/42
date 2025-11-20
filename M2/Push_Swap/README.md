@@ -4,7 +4,7 @@ Here is a summary of the workflow for my **Push Swap** project, designed for the
 
 ---
 
-## 📚 Core Objective & Constraints
+## 📚 Objective & Constraints
 
 The main goal is to sort a list of random numbers from **minimum to maximum values** using only two data structures, **Stack A** and **Stack B**, and a limited set of allowed movements.
 
@@ -16,8 +16,7 @@ The **allowed movements** are:
 * **Reverse Rotate:** `rra`, `rrb`, `rrr`
 ![Workflow](assets/push_swap_visualizer.gif)
 
-If you want to use this Push_Swap visualizer tool created by another student, find it on the link below:
-> [Push_Swap visualizer](https://codepen.io/ahkoh/full/bGWxmVz)
+><i> Note: If you are performing this project and I suggest you to use this [Push_Swap visualizer Tool](https://codepen.io/ahkoh/full/bGWxmVz) created by another student and this [Random Number Generator](https://www.calculatorsoup.com/calculators/statistics/random-number-generator.php) </i>
 ---
 
 ## 🧠 Algorithm & Efficiency
@@ -38,4 +37,5 @@ Most of the time, this **Turk algorithm** completes the task for **500 random nu
 ## 🎨 Workflow Chart
 
 Find below the visual workflow chart I made for my project's logic. Hope it helps!
+
 ![Workflow](assets/workflow_push_swap_1.png)
