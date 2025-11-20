@@ -1,4 +1,4 @@
-# ⚙️ Push Swap Project Summary (42 School)
+# ⚙️ Push Swap Project Summary
 
 Here is a summary of the workflow for my **Push Swap** project, designed for the **42 school** curriculum. This project focuses on sorting an unsorted list of random integers using highly restricted operations between two stacks.
 
@@ -14,7 +14,7 @@ The **allowed movements** are:
 * **Push:** `pa`, `pb`
 * **Rotate:** `ra`, `rb`, `rr`
 * **Reverse Rotate:** `rra`, `rrb`, `rrr`
-
+![Workflow](assets/push_swap_visualizer.gif)
 ---
 
 ## 🧠 Algorithm & Efficiency
@@ -35,7 +35,7 @@ Most of the time, this **Turk algorithm** completes the task for **500 random nu
 
 ## 🎨 Workflow Chart
 
-Find below the visual workflow chart for the project's logic:
+Find below the visual workflow chart I made for my project's logic:
 
 ![Workflow](assets/workflow_push_swap.png)
 
