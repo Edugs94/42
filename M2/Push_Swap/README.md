@@ -15,19 +15,21 @@ The **allowed movements** are:
 * **Rotate:** `ra`, `rb`, `rr`
 * **Reverse Rotate:** `rra`, `rrb`, `rrr`
 ![Workflow](assets/push_swap_visualizer.gif)
+
+If you want to use this Push_Swap visualizer tool created by another student, find it on the link below:
+> [Push_Swap visualizer](https://codepen.io/ahkoh/full/bGWxmVz)
 ---
 
 ## 🧠 Algorithm & Efficiency
 
 #### Chosen Algorithm: **Turk Sort**
 
-The sorting strategy implemented is the **Turk Algorithm**. This algorithm is highly efficient and designed to minimize the total number of operations, which is the core metric of the project.
-
+The sorting strategy implemented is the **Turk Algorithm**. 
 The detailed steps followed for this implementation are based on the guidance provided in the article below:
 
 > [Article Reference: Push Swap: Turk Algorithm Explained in 6 Steps](https://pure-forest.medium.com/push-swap-turk-algorithm-explained-in-6-steps-4c6650a458c0)
 
-#### Performance Metric 📈
+#### Performance 📈
 
 Most of the time, this **Turk algorithm** completes the task for **500 random numbers** using **under 5500 moves**, demonstrating strong performance relative to the project requirements.
 
@@ -35,8 +37,6 @@ Most of the time, this **Turk algorithm** completes the task for **500 random nu
 
 ## 🎨 Workflow Chart
 
-Find below the visual workflow chart I made for my project's logic:
+Find below the visual workflow chart I made for my project's logic. Hope it helps!
 
 ![Workflow](assets/workflow_push_swap.png)
-
-Hope it helps!
