@@ -46,8 +46,13 @@ void	free_and_exit(int error, char **matrix, int *int_arr)
 	int	i;
 
 	i = 0;
-	write(1, "Error\n", 6);
+	if (error == 0)
+	{
+		free (int_arr);
+		exit (0);
+	}
 	if (error == 1)
 		exit (1);
+	write(1, "Error\n", 6);
 	free_and_exit_1(error, matrix, int_arr);
 }

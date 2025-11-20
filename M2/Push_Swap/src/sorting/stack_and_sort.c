@@ -87,6 +87,11 @@ void	stack_and_sort(int *clean_data, int size)
 	stack_a = create_stack(clean_data, size);
 	add_index(&stack_a, size);
 	stack_b = NULL;
+	if (check_order(&stack_a) == 1)
+	{
+		ft_lstclear(&stack_a);
+		free_and_exit(0, NULL, clean_data);
+	}
 	turk_algorithm(&stack_a, &stack_b, size);
 	sort_a(&stack_a);
 	ft_lstclear(&stack_a);

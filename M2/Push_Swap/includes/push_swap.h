@@ -62,6 +62,8 @@ char	**ft_split(char const *s, char c);
 char	*ft_strdup(const char *s);
 // --- Free and exit ---
 void	free_and_exit(int error, char **matrix, int *int_arr);
+// --- Check order ---
+int		check_order(t_stack **stack);
 // --- Validate and parse Utils ---
 int		*atoi_args(int size, char **matrix);
 void	check_chars(char *str, char *limit, char **matrix);

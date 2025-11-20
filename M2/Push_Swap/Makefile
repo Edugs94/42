@@ -9,7 +9,8 @@ INCLUDES_DIR = includes
 SRCS_MAIN = $(SRCS_DIR)/main.c
 SRCS_UTILS = $(SRCS_DIR)/utils/free_and_exit.c \
              $(SRCS_DIR)/utils/lists_fts.c \
-             $(SRCS_DIR)/utils/node_creator.c
+             $(SRCS_DIR)/utils/node_creator.c \
+             $(SRCS_DIR)/utils/check_order.c    
 SRCS_MOVES = $(SRCS_DIR)/moves/push.c \
              $(SRCS_DIR)/moves/rotate.c \
              $(SRCS_DIR)/moves/reverse_rotate.c \
