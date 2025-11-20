@@ -38,5 +38,3 @@ Most of the time, this **Turk algorithm** completes the task for **500 random nu
 ## 🎨 Workflow Chart
 
 Find below the visual workflow chart I made for my project's logic. Hope it helps!
-
-![Workflow](assets/workflow_push_swap.png)
