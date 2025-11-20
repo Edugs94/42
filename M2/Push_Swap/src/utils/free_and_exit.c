@@ -6,7 +6,7 @@
 /*   By: edu-legion <edu-legion@student.42.fr>      +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/11/18 14:34:01 by egalindo          #+#    #+#             */
-/*   Updated: 2025/11/20 09:17:38 by egalindo         ###   ########.fr       */
+/*   Updated: 2025/11/20 20:03:51 by edu-legion       ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -43,9 +43,6 @@ static void	free_and_exit_1(int error, char **matrix, int *int_arr)
 
 void	free_and_exit(int error, char **matrix, int *int_arr)
 {
-	int	i;
-
-	i = 0;
 	if (error == 0)
 	{
 		free (int_arr);

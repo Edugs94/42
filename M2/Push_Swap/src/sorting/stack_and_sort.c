@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   stack_and_sort.c                                   :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: egalindo <egalindo@student.42barcelon      +#+  +:+       +#+        */
+/*   By: edu-legion <edu-legion@student.42.fr>      +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/11/15 18:26:58 by egalindo          #+#    #+#             */
-/*   Updated: 2025/11/20 10:25:04 by egalindo         ###   ########.fr       */
+/*   Updated: 2025/11/20 20:08:54 by edu-legion       ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -87,7 +87,7 @@ void	stack_and_sort(int *clean_data, int size)
 	stack_a = create_stack(clean_data, size);
 	add_index(&stack_a, size);
 	stack_b = NULL;
-	if (check_order(&stack_a) == 1)
+	if (check_order(&stack_a) == 0)
 	{
 		ft_lstclear(&stack_a);
 		free_and_exit(0, NULL, clean_data);
