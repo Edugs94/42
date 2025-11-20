@@ -6,21 +6,18 @@
 /*   By: edu-legion <edu-legion@student.42.fr>      +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/11/18 14:34:01 by egalindo          #+#    #+#             */
-/*   Updated: 2025/11/18 23:31:05 by edu-legion       ###   ########.fr       */
+/*   Updated: 2025/11/20 09:17:38 by egalindo         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "push_swap.h"
 #include <stdio.h>
 
-void	free_and_exit(int error, char **matrix, int *int_arr)
+static void	free_and_exit_1(int error, char **matrix, int *int_arr)
 {
 	int	i;
 
 	i = 0;
-	printf("Error\n");
-	if (error == 1)
-		exit (1);
 	if (error == 2)
 	{
 		while (matrix[i])
@@ -38,8 +35,19 @@ void	free_and_exit(int error, char **matrix, int *int_arr)
 			free(matrix[i]);
 			i++;
 		}
-		free(matrix);
-		free(int_arr);
-		exit(3);
 	}
+	free(matrix);
+	free(int_arr);
+	exit(3);
+}
+
+void	free_and_exit(int error, char **matrix, int *int_arr)
+{
+	int	i;
+
+	i = 0;
+	write(1, "Error\n", 6);
+	if (error == 1)
+		exit (1);
+	free_and_exit_1(error, matrix, int_arr);
 }

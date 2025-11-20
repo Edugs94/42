@@ -6,7 +6,7 @@
 /*   By: edu-legion <edu-legion@student.42.fr>      +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/11/19 10:06:39 by egalindo          #+#    #+#             */
-/*   Updated: 2025/11/19 22:24:22 by edu-legion       ###   ########.fr       */
+/*   Updated: 2025/11/20 09:21:53 by egalindo         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -45,14 +45,14 @@ void	add_total_cost(t_stack **stack_a, t_stack **stack_b)
 		{
 			if (iteri_b->target == iteri_a)
 			{
-				if (ft_node_position(iteri_a, *stack_a) <= ft_lstsize(*stack_a) / 2)
+				if (ft_node_position(iteri_a, *stack_a)
+					<= ft_lstsize(*stack_a) / 2)
 					iteri_b->target_cost = i;
 				else
 					iteri_b->target_cost = ft_lstsize(*stack_a) - i;
 				iteri_b->total_cost = iteri_b->target_cost + iteri_b->top_cost;
 			}
-			//else
-				iteri_a = iteri_a->next;
+			iteri_a = iteri_a->next;
 			i++;
 		}
 		iteri_b = iteri_b->next;

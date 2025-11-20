@@ -6,7 +6,7 @@
 /*   By: egalindo <egalindo@student.42barcelon      +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/11/15 13:19:59 by egalindo          #+#    #+#             */
-/*   Updated: 2025/11/19 14:53:57 by egalindo         ###   ########.fr       */
+/*   Updated: 2025/11/20 09:12:55 by egalindo         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -33,7 +33,7 @@ t_stack	*create_stack(int *int_arr, int size)
 	t_stack	*new_node;
 	int		i;
 
-	if (size <= 0 )
+	if (size <= 0)
 		return (NULL);
 	i = 0;
 	stack = ft_lstnew(int_arr[i]);

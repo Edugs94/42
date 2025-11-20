@@ -6,11 +6,35 @@
 /*   By: egalindo <egalindo@student.42barcelon      +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/11/15 18:26:58 by egalindo          #+#    #+#             */
-/*   Updated: 2025/11/19 18:35:25 by egalindo         ###   ########.fr       */
+/*   Updated: 2025/11/20 10:25:04 by egalindo         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "push_swap.h"
+
+static void	get_min(t_stack **iteri, long *last, t_stack **min)
+{
+	while (*iteri)
+	{
+		if ((*iteri)->content > *last && (*iteri)->index == 0)
+		{
+			*min = *iteri;
+			break ;
+		}
+		*iteri = (*iteri)->next;
+	}
+}
+
+static void	add_index_aux(t_stack **iteri, long *last, t_stack **min)
+{
+	while (*iteri)
+	{
+		if ((*iteri)->content > *last && (*iteri)->content < (*min)->content
+			&& (*iteri)->index == 0)
+			*min = *iteri;
+		*iteri = (*iteri)->next;
+	}
+}
 
 static void	add_index(t_stack **stack, int size)
 {
@@ -27,24 +51,9 @@ static void	add_index(t_stack **stack, int size)
 	{
 		iteri = *stack;
 		min = NULL;
-		while (iteri)
-		{
-			if (iteri->content > last && iteri->index == 0)
-			{
-				min = iteri;
-				break;
-			}
-			iteri = iteri->next;
-		}
+		get_min(&iteri, &last, &min);
 		iteri = *stack;
-		while (iteri)
-		{
-			if (iteri->content > last && iteri->content < min->content 
-				&& iteri->index == 0)
-				min = iteri;
-			iteri = iteri->next;
-		}
-
+		add_index_aux(&iteri, &last, &min);
 		if (min)
 		{
 			min->index = i;
@@ -56,12 +65,12 @@ static void	add_index(t_stack **stack, int size)
 
 static void	sort_a(t_stack **stack)
 {
-	t_stack *min;
+	t_stack	*min;
 
 	min = *stack;
 	while (min->index != 0)
 		min = min-> next;
-	while(ft_node_position(min, *stack) != 0)
+	while (ft_node_position(min, *stack) != 0)
 	{
 		if (cheapest_rotation(min, stack) > 0)
 			ft_ra(stack);
@@ -69,6 +78,7 @@ static void	sort_a(t_stack **stack)
 			ft_rra(stack);
 	}
 }
+
 void	stack_and_sort(int *clean_data, int size)
 {
 	t_stack	*stack_a;

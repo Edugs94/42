@@ -6,7 +6,7 @@
 /*   By: edu-legion <edu-legion@student.42.fr>      +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/11/19 11:48:13 by egalindo          #+#    #+#             */
-/*   Updated: 2025/11/19 21:40:56 by edu-legion       ###   ########.fr       */
+/*   Updated: 2025/11/20 09:32:25 by egalindo         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -25,7 +25,7 @@ int	cheapest_rotation(t_stack *node, t_stack **stack)
 		return (position - size);
 }
 
-static void		single_rotation(int moves_b, int moves_a, t_stack **stack_a, t_stack **stack_b)
+static void	single_rotation_b(int moves_b, t_stack **stack_b)
 {
 	while (moves_b != 0)
 	{
@@ -40,6 +40,10 @@ static void		single_rotation(int moves_b, int moves_a, t_stack **stack_a, t_stac
 			moves_b++;
 		}
 	}
+}
+
+static void	single_rotation_a(int moves_a, t_stack **stack_a)
+{
 	while (moves_a != 0)
 	{
 		if (moves_a > 0)
@@ -54,7 +58,9 @@ static void		single_rotation(int moves_b, int moves_a, t_stack **stack_a, t_stac
 		}
 	}
 }
-static void		multiple_rotation(int moves_b, int moves_a, t_stack **stack_a, t_stack **stack_b)
+
+static void	multiple_rotation(int moves_b, int moves_a,
+								t_stack **stack_a, t_stack **stack_b)
 {
 	while (moves_b > 0 && moves_a > 0)
 	{
@@ -68,7 +74,8 @@ static void		multiple_rotation(int moves_b, int moves_a, t_stack **stack_a, t_st
 		moves_b++;
 		moves_a++;
 	}
-	single_rotation(moves_b, moves_a, stack_a, stack_b);
+	single_rotation_b(moves_b, stack_b);
+	single_rotation_a(moves_a, stack_a);
 }
 
 void	rotate_and_push(t_stack *min, t_stack **stack_a, t_stack **stack_b)

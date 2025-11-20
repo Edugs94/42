@@ -6,7 +6,7 @@
 /*   By: egalindo <egalindo@student.42barcelon      +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/11/15 13:20:31 by egalindo          #+#    #+#             */
-/*   Updated: 2025/11/17 15:58:29 by egalindo         ###   ########.fr       */
+/*   Updated: 2025/11/20 08:51:59 by egalindo         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -35,11 +35,11 @@ void	ft_push(t_stack **stack_from, t_stack **stack_to)
 void	ft_pa(t_stack **stack_a, t_stack **stack_b)
 {
 	ft_push(stack_b, stack_a);
-	printf("pa\n");
+	write(1, "pa\n", 3);
 }
 
 void	ft_pb(t_stack **stack_a, t_stack **stack_b)
 {
 	ft_push(stack_a, stack_b);
-	printf("pb\n");
+	write(1, "pb\n", 3);
 }

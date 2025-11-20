@@ -6,7 +6,7 @@
 /*   By: edu-legion <edu-legion@student.42.fr>      +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/10/10 08:56:11 by egalindo          #+#    #+#             */
-/*   Updated: 2025/11/19 19:52:47 by edu-legion       ###   ########.fr       */
+/*   Updated: 2025/11/20 09:20:16 by egalindo         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -21,7 +21,6 @@
 # include <unistd.h>
 # include <limits.h>
 # include <stdlib.h>
-# include <stdio.h> //pdte quitar
 /******************************************************************************/
 /* 																			  */
 /* 									 MACROS                                   */
@@ -91,7 +90,7 @@ int		ft_lstsize(t_stack *lst);
 t_stack	*ft_lstnew(int content);
 int		ft_node_position(t_stack *node, t_stack *stack);
 void	ft_lstadd_back(t_stack **lst, t_stack *new);
-void    ft_lstclear(t_stack **lst);
+void	ft_lstclear(t_stack **lst);
 // --- Node Creator ---
 void	free_stack(t_stack **stack);
 t_stack	*create_stack(int *int_arr, int size);

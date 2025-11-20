@@ -1,48 +1,50 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   rotate.c                                           :+:      :+:    :+:   */
+/*   reverse_rotate.c                                   :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: egalindo <egalindo@student.42barcelon      +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2025/11/15 13:22:49 by egalindo          #+#    #+#             */
-/*   Updated: 2025/11/15 18:01:21 by egalindo         ###   ########.fr       */
+/*   Created: 2025/11/15 13:22:42 by egalindo          #+#    #+#             */
+/*   Updated: 2025/11/20 09:19:03 by egalindo         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "push_swap.h"
 
-void	ft_rotate(t_stack **stack)
+void	ft_rrotate(t_stack **stack)
 {
-	t_stack	*first;
+	t_stack	*iteri;
 	t_stack	*last;
 
 	if (!*stack || !(*stack)->next)
 		return ;
-	first = *stack;
-	*stack = (*stack)->next;
+	iteri = *stack;
 	last = *stack;
-	while (last->next)
+	while (iteri->next)
+		iteri = iteri->next;
+	while (last->next != iteri)
 		last = last->next;
-	last->next = first;
-	first->next = NULL;
+	last->next = NULL;
+	iteri->next = *stack;
+	*stack = iteri;
 }
 
-void	ft_ra(t_stack **stack)
+void	ft_rra(t_stack **stack)
 {
-	ft_rotate(stack);
-	printf("ra\n");
+	ft_rrotate(stack);
+	write(1, "rra\n", 4);
 }
 
-void	ft_rb(t_stack **stack)
+void	ft_rrb(t_stack **stack)
 {
-	ft_rotate(stack);
-	printf("rb\n");
+	ft_rrotate(stack);
+	write(1, "rrb\n", 4);
 }
 
-void	ft_rr(t_stack **stack_1, t_stack **stack_2)
+void	ft_rrr(t_stack **stack_1, t_stack **stack_2)
 {
-	ft_rotate(stack_1);
-	ft_rotate(stack_2);
-	printf("rr\n");
+	ft_rrotate(stack_1);
+	ft_rrotate(stack_2);
+	write(1, "rrr\n", 4);
 }

@@ -1,33 +1,24 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   ft_strdup.c                                        :+:      :+:    :+:   */
+/*   main.c                                             :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: edu-legion <edu-legion@student.42.fr>      +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2025/10/07 09:22:03 by egalindo          #+#    #+#             */
-/*   Updated: 2025/11/18 22:47:49 by edu-legion       ###   ########.fr       */
+/*   Created: 2025/11/18 10:49:30 by egalindo          #+#    #+#             */
+/*   Updated: 2025/11/20 08:47:38 by egalindo         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "push_swap.h"
 
-char	*ft_strdup(const char *s)
+int	main(int argc, char **argv)
 {
-	char	*ptr;
-	size_t	i;
+	int	*clean_data;
+	int	size;
 
-	if (!s)
-		return (NULL);	
-	ptr = (char *)malloc(ft_strlen(s) + 1);
-	if (ptr == NULL)
-		return (NULL);
-	i = 0;
-	while (i < ft_strlen(s))
-	{
-		ptr[i] = s[i];
-		i++;
-	}
-	ptr[i] = '\0';
-	return (ptr);
+	clean_data = validate_and_parse(argc, argv, &size);
+	stack_and_sort(clean_data, size);
+	free(clean_data);
+	return (0);
 }
