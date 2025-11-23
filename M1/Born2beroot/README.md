@@ -1,4 +1,4 @@
-a**This is a guide to better understand the 42 Born2beroot project. Some evaluators will let you have the cheatsheet during the correction while others will not, in any case you can download the full pdf from assets folder. I hope it helps!**
+**This is a guide to better understand the 42 Born2beroot project. Some evaluators will let you have the cheatsheet during the correction while others will not, in any case you can download the full pdf from assets folder. I hope it helps!**
 
 # 📚 Born2beroot Cheatsheet
 
