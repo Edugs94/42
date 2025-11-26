@@ -36,7 +36,7 @@ OBJS = $(SRCS:$(SRCS_DIR)/%.c=$(OBJS_DIR)/%.o)
 
 all: $(NAME)
 
-$(NAME): $(DIRS) $(OBJS)
+$(NAME): $(DIRS) $(OBJS) $(INCLUDES_DIR)/push_swap.h Makefile
 	$(CC) $(CFLAGS) $(OBJS) -o $(NAME)
 
 $(OBJS_DIR)/%.o: $(SRCS_DIR)/%.c
